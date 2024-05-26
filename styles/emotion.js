@@ -37,6 +37,7 @@ export const ContentTitle = styled.input`
   height: 32px;
   border: 1px solid #BDBDBD;
   padding-left: 13px;
+  font-family: 'NotoSansKR';
 `
 
 export const Content = styled.input`
@@ -45,6 +46,7 @@ export const Content = styled.input`
   border: 1px solid #BDBDBD;
   padding-left: 13px;
   margin-bottom: 20px;
+  font-family: 'NotoSansKR';
 `
 
 export const ContentArea = styled.textarea`
@@ -52,6 +54,7 @@ export const ContentArea = styled.textarea`
   height: 480px;
   padding: 0 8px;
   border: 1px solid #BDBDBD;
+  font-family: 'NotoSansKR';
 `
 export const ContentBox = styled.div`
   display: flex;
@@ -92,4 +95,9 @@ export const RegisterBtn = styled.button`
   background-color: #FFD600;
   border: transparent;
   margin: 0 auto;
+  font-family: 'NotoSansKR';
+`
+
+export const Error = styled.div`
+  color: red;
 `
