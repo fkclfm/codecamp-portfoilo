@@ -26,7 +26,7 @@ export const HeaderTitle = styled.div`
 
 export const Title = styled.div`
   width: 600px;
-  height: 92px;
+  height: 120px;
   gap: 15px;
   display: flex;
   flex-direction: column;
@@ -96,8 +96,4 @@ export const RegisterBtn = styled.button`
   border: transparent;
   margin: 0 auto;
   font-family: 'NotoSansKR';
-`
-
-export const Error = styled.div`
-  color: red;
 `

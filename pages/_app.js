@@ -3,7 +3,7 @@ import "../src/fonts/index.css"
 
 export default function App({ Component, pageProps }) {
   const client = new ApolloClient ({
-    uri : "http://backend-pratice.codebootcamp.co.kr/graphql",
+    uri : "https://backend-practice.codebootcamp.co.kr/graphql",
     cache : new InMemoryCache() 
   })
   return (

@@ -1,121 +1,124 @@
-import { useMutation, gql } from "@apollo/client"
 import { useState } from "react"
-import { useRouter } from "next/router"
+import { useMutation, gql } from "@apollo/client"
 import {
   Wrapper, HeaderTitle, Title, TitleText, Content,
   ContentTitle, ContentArea, Address,
-  ContentBox, Btn, UploadBox, Upload, RegisterBtn, Error
+  ContentBox, Btn, UploadBox, Upload, RegisterBtn
 } from "../../../styles/emotion"
-
+import { useRouter } from "next/router"
 
 const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
-    createBoard(createBoardInput: $createBoardInput) {
+    createBoard(createBoardInput: $createBoardInput) {  
       _id
       writer
       title
       contents
     }
   }
- 
 `
 
 
 export default function Board() {
   const router = useRouter()
-  const [ data ] = useMutation(CREATE_BOARD)
+  const [ createBoard ] = useMutation(CREATE_BOARD)
 
-  const [writer, setWriter] = useState("");
-  const [password, setPassword] = useState("");
-  const [title, setTitle] = useState("");
-  const [contents, setContents] = useState("");
+  const [writer, setWriter] = useState("")
+  const [pw, setPw] = useState("")
+  const [title, setTitle] = useState("")
+  const [contents, setContents] = useState("")
 
-  const [writerError, setWriterError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
-  const [titleError, setTitleError] = useState("");
-  const [contentsError, setContentsError] = useState("");
+  const [writerError, setWriterError] = useState("")
+  const [pwError, setPwError] = useState("")
+  const [titleError, setTitleError] = useState("")
+  const [contentsError, setContentsError] = useState("")
 
-  const onChangeWriter = (event) => {
-    setWriter(event.target.value);
-    if(event.target.value !== ""){
+
+  function onWriterCheck(event) {
+    setWriter(event.target.value)
+    if(event.target.value != "") {
       setWriterError("")
     }
-  };
+    
+  }
 
-  const onChangePassword = (event) => {
-    setPassword(event.target.value);
-    if(event.target.value !== ""){
-      setPasswordError("")
+  function onPwCheck(event) {
+    setPw(event.target.value)
+    if(event.target.value != "") {
+      setPwError("")
     }
-  };
+  }
 
-  const onChangeTitle = (event) => {
-    setTitle(event.target.value);
-    if(event.target.value !== ""){
+  function onTitleCheck(event) {
+    setTitle(event.target.value)
+    if(event.target.value != "") {
       setTitleError("")
     }
-  };
+  }
 
-  const onChangeContents = (event) => {
-    setContents(event.target.value);
-    if(event.target.value !== ""){
+  function onContentCheck(event) {
+    setContents(event.target.value)
+    if(event.target.value != "") {
       setContentsError("")
     }
-  };
-
-  const onClickSubmit = async () => {
-      
-     
-
-    if (!writer) {
-      setWriterError("작성자를 입력해주세요.");
+  }
+  
+  const registerCheck = async () => {
+    if (writer === "") {
+      setWriterError("작성자를 작성해주세요.")
     }
-    if (!password) {
-      setPasswordError("비밀번호를 입력해주세요.");
+    if (pw === "") {
+      setPwError("비밀번호를 작성해주세요.")
     }
-    if (!title) {
-      setTitleError("제목을 입력해주세요.");
+    if (title === "") {
+      setTitleError("제목을 작성해주세요.")
     }
-    if (!contents) {
-      setContentsError("내용을 입력해주세요.");
+    if (contents === "") {
+      setContentsError("내용을 작성해주세요.")
     }
-    if (writer && password && title && contents) {
-      const result = await createBoard({ 
-        variables : {
-          createBoardInput : {
-            writer,
-            password,
-            title,
-            contents,
+    
+    if(writer && pw && title && contents) {
+      try {
+        const result = await createBoard({
+          variables : {
+            createBoardInput: {
+              writer: writer,
+              password : pw,
+              title: title,
+              contents: contents
+            }
           }
-        }
-       })
-        alert("게시글이 등록되었습니다.");
+        })
+        alert("게시글 등록이 완료되었습니다.")
         console.log(result)
+        router.push(`/section08/${result.data.createBoard._id}`)
+        console.log(router)
+      } catch(error) {
+        alert(error.message)
+      }
     }
-  };
-
+  }
   return (
     <Wrapper>
       <TitleText>게시물 등록</TitleText>
       <HeaderTitle>
         <Title>
-          <Error>{writerError}</Error>
           <label htmlFor="writter">작성자</label>
-          <ContentTitle type="text" placeholder="이름을 적어주세요." onChange={onChangeWriter}/>
+          <div className="Error">{writerError}</div>
+          <ContentTitle type="text" onChange={onWriterCheck} placeholder="이름을 적어주세요." />
         </Title>
         <Title>
-        <Error>{passwordError}</Error>
           <label for="password">비밀번호</label>
-          <ContentTitle type="password" placeholder="비밀번호를 입력해주세요." onChange={onChangePassword}/>
+          <div className="Error">{pwError}</div>
+          <ContentTitle type="password" onChange={onPwCheck} placeholder="비밀번호를 입력해주세요." />
         </Title>
       </HeaderTitle>
-      <Error>{titleError}</Error>
-      <label for="title">제목</label>
-      <Content type="text" placeholder="제목을 작성해주세요." onChange={onChangeTitle}/>
-      <Error>{contentsError}</Error>
-      <label for="content">내용</label>
-      <ContentArea cols="50" rows="10" placeholder="내용을 작성해주세요." onChange={onChangeContents}></ContentArea>
+      <label htmlFor="title">제목</label>
+      <div className="Error">{titleError}</div>
+      <Content type="text" onChange={onTitleCheck} placeholder="제목을 작성해주세요." />
+      <label htmlFor="content">내용</label>
+      <div className="Error">{contentsError}</div>
+      <ContentArea cols="50" rows="10" onChange={onContentCheck} placeholder="내용을 작성해주세요."></ContentArea>
       <label htmlFor="area">주소</label>
       <ContentBox>
         <Address type="text" placeholder="07250" />
@@ -133,10 +136,10 @@ export default function Board() {
       </UploadBox>
       <label htmlFor="main-setting">매인 설정</label>
       <ContentBox>
-        <input type="radio" name="youtube" id="" /> 유튜브
-        <input type="radio" name="youtube" id="" /> 사진
+        <input type="radio" name="youtube" /> 유튜브
+        <input type="radio" name="youtube" /> 사진
       </ContentBox>
-      <RegisterBtn>등록하기</RegisterBtn>
+      <RegisterBtn onClick={registerCheck}>등록하기</RegisterBtn>
     </Wrapper>
   )
 

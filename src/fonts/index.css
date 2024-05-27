@@ -8,3 +8,8 @@
 body {
   font-family: 'NotoSansKR';
 }
+
+.Error {
+  color: red;
+  font-size: 13px;
+}
