@@ -18,8 +18,6 @@ const FETCH_BOARD = gql`
   }
 `
 
-
-
 export default function Board() {
   const router = useRouter()
     const { data } = useQuery(FETCH_BOARD, {
@@ -38,8 +36,10 @@ export default function Board() {
         </ProfileBox>
       </Header>
       <HorizonLine />
-      <TitleText>게시글 제목입니다.</TitleText>
-      게시판 내용입니다.
+      {/* 글 제목 */}
+      <TitleText>{data?.fetchBoard.title}</TitleText>  
+      {/* 글 내용 */}
+      {data?.fetchBoard.contents}
     </Wrapper>
     <BtnBox>
         <BoardBtn>목록으로</BoardBtn>
