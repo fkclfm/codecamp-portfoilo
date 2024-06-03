@@ -90,9 +90,8 @@ export default function Board() {
           }
         })
         alert("게시글 등록이 완료되었습니다.")
-        console.log(result)
+        console.log(result.data.createBoard._id)
         router.push(`/section08/${result.data.createBoard._id}`)
-        console.log(router)
       } catch(error) {
         alert(error.message)
       }
