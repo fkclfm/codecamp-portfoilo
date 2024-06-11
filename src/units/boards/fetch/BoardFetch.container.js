@@ -13,8 +13,6 @@ export default function BoardFetch() {
   console.log(data)
 
   return (
-    <BoardFetchUI
-      data={data}
-    />
+    <BoardFetchUI data={data} />
   )
 }
