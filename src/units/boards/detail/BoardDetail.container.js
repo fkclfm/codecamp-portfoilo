@@ -23,7 +23,7 @@ export default function BoardDetail() {
         ]
       })
       alert("게시물이 성공적으로 삭제되었습니다.")
-      router.push('/section11/new')
+      router.push('/section11')
     } catch(error) {
       alert(error.message)
     }
@@ -31,13 +31,15 @@ export default function BoardDetail() {
     console.log(event.target)
   }
 
-
-  console.log(data)
+  const onClickList = () => {
+    router.push("/section11")
+  }
 
   return (
     <BoardDetailUI 
       data={data}
-      onClickDelete={onClickDelete} 
+      onClickDelete={onClickDelete}
+      onClickList={onClickList}
     />
   )
 }

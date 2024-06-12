@@ -1,22 +1,35 @@
+import { getDate } from "../../../common/year"
+import * as S from "./BoardList.styled";
 
-export default function BoardFetchUI(props) {
-
+export default function BoardListUI(props) {
   return (
-    <div>
-      <div>
-        <span style={{margin : "10px"}}>작성자</span>
-        <span style={{margin : "10px"}}>제목</span>
-        <span style={{margin : "10px"}}>내용</span>
-      </div>
-      {props.data?.fetchBoards.map(el => (
-        <div key={el._id}>
-          <span style={{margin : "10px"}}>{el.writer}</span>
-          <span style={{margin : "10px"}}>{el.title}</span>
-          <span style={{margin : "10px"}}>{el.contents}</span>
-          <button id={el._id} onClick={props.onClickDelete}>삭제</button>
-          //id 값은 fetchBoards 객체 안에 있는 id(글 아이디)
-        </div>
+    <S.Wrapper>
+      <S.TableTop />
+      <S.Row>
+        <S.ColumnHeaderBasic>ID</S.ColumnHeaderBasic>
+        <S.ColumnHeaderTitle>제목</S.ColumnHeaderTitle>
+        <S.ColumnHeaderBasic>작성자</S.ColumnHeaderBasic>
+        <S.ColumnHeaderBasic>날짜</S.ColumnHeaderBasic>
+      </S.Row>
+      {props.data?.fetchBoards.map((el) => (
+        <S.Row key={el._id}>
+          <S.ColumnBasic>
+            {String(el._id).slice(-4).toUpperCase()}
+          </S.ColumnBasic>
+          <S.ColumnTitle id={el._id} onClick={props.onClickMoveToBoardDetail}>
+            {el.title}
+          </S.ColumnTitle>
+          <S.ColumnBasic>{el.writer}</S.ColumnBasic>
+          <S.ColumnBasic>{getDate(el.createdAt)}</S.ColumnBasic>
+        </S.Row>
       ))}
-    </div>
-  )
+      <S.TableBottom />
+      <S.Footer>
+        <S.Button onClick={props.onClickMoveToBoardNew}>
+          <S.PencilIcon src="/images/board/list/write.png" />
+          게시물 등록하기
+        </S.Button>
+      </S.Footer>
+    </S.Wrapper>
+  );
 }

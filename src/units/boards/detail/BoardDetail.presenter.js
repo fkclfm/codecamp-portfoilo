@@ -21,7 +21,7 @@ export default function BoardDetailUI(props) {
       {props.data?.fetchBoard.contents}
     </Wrapper>
     <BtnBox>
-        <BoardBtn>목록으로</BoardBtn>
+        <BoardBtn onClick={props.onClickList}>목록으로</BoardBtn>
         <BoardBtn>수정하기</BoardBtn>
         <BoardBtn id={props.data?.fetchBoard._id} onClick={props.onClickDelete}>삭제하기</BoardBtn>
     </BtnBox></>
