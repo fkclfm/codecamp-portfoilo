@@ -3,5 +3,5 @@ export const getDate = (date) => {
   const yy = data.getFullYear()
   const mm = data.getMonth() + 1
   const dd = data.getDate()
-  return `${yy}+${mm}+${dd}`
+  return `${yy}-${mm}-${dd}`
 } 

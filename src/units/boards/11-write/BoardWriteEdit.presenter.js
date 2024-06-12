@@ -1,33 +1,58 @@
 import {
-  Wrapper, HeaderTitle, Title, TitleText, Content,
-  ContentTitle, ContentArea, Address,
-  ContentBox, Btn, UploadBox, Upload, RegisterBtn
-} from "./BoardWrite.styled"
+  Wrapper,
+  HeaderTitle,
+  Title,
+  TitleText,
+  Content,
+  ContentTitle,
+  ContentArea,
+  Address,
+  ContentBox,
+  Btn,
+  UploadBox,
+  Upload,
+  RegisterBtn,
+} from "./BoardWrite.styled";
 
-
-export default function BoardWriteUI(props) {
-
+export default function BoardWriteEditUI(props) {
   return (
     <Wrapper>
-      <TitleText>게시물 등록</TitleText>
+      <TitleText>게시물 {props.isEdit ? "수정" : "등록"}</TitleText>
       <HeaderTitle>
         <Title>
           <label htmlFor="writter">작성자</label>
           <div className="Error">{props.writerError}</div>
-          <ContentTitle type="text" onChange={props.WriterCheck} placeholder="이름을 적어주세요." />
+          <ContentTitle
+            type="text"
+            onChange={props.WriterCheck}
+            placeholder="이름을 적어주세요."
+          />
         </Title>
         <Title>
           <label for="password">비밀번호</label>
           <div className="Error">{props.pwError}</div>
-          <ContentTitle type="password" onChange={props.PwCheck} placeholder="비밀번호를 입력해주세요." />
+          <ContentTitle
+            type="password"
+            onChange={props.PwCheck}
+            placeholder="비밀번호를 입력해주세요."
+          />
         </Title>
       </HeaderTitle>
       <label htmlFor="title">제목</label>
       <div className="Error">{props.titleError}</div>
-      <Content type="text" onChange={props.TitleCheck} placeholder="제목을 작성해주세요." />
+      <Content
+        type="text"
+        onChange={props.TitleCheck}
+        placeholder="제목을 작성해주세요."
+      />
       <label htmlFor="content">내용</label>
       <div className="Error">{props.contentsError}</div>
-      <ContentArea cols="50" rows="10" onChange={props.ContentCheck} placeholder="내용을 작성해주세요."></ContentArea>
+      <ContentArea
+        cols="50"
+        rows="10"
+        onChange={props.ContentCheck}
+        placeholder="내용을 작성해주세요."
+      ></ContentArea>
       <label htmlFor="area">주소</label>
       <ContentBox>
         <Address type="text" placeholder="07250" />
@@ -48,7 +73,9 @@ export default function BoardWriteUI(props) {
         <input type="radio" name="youtube" /> 유튜브
         <input type="radio" name="youtube" /> 사진
       </ContentBox>
-      <RegisterBtn onClick={props.RegisterCheck} disabled={props.isTrue}>등록하기</RegisterBtn>
+      <RegisterBtn onClick={props.RegisterCheck} disabled={props.isTrue}>
+        {props.isEdit ? "수정" : "등록"}하기
+      </RegisterBtn>
     </Wrapper>
-  )
+  );
 }

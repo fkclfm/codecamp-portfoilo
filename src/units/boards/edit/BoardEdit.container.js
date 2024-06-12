@@ -1,12 +1,12 @@
 import { useState } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
-import { CREATE_BOARD } from "./BoardWrite.queries";
-import BoardWriteEditUI from "./BoardWriteEdit.presenter";
+import { UPDATE_BOARD } from "./BoardEdit.queries";
+import BoardWriteEditUI from "../11-write/BoardWriteEdit.presenter";
 
-export default function BoardWrite(props) {
+export default function BoardEdit(props) {
   const router = useRouter();
-  const [createBoard] = useMutation(CREATE_BOARD);
+  const [updateBoard] = useMutation(UPDATE_BOARD);
 
   const [isTrue, setIsTrue] = useState(true);
   const [writer, setWriter] = useState("");
@@ -94,9 +94,9 @@ export default function BoardWrite(props) {
 
     if (writer && pw && title && contents) {
       try {
-        const result = await createBoard({
+        const result = await updateBoard({
           variables: {
-            createBoardInput: {
+            UpdateBoardInput: {
               writer: writer,
               password: pw,
               title: title,
@@ -105,8 +105,8 @@ export default function BoardWrite(props) {
           },
         });
         alert("게시글 등록이 완료되었습니다.");
-        console.log(result.data.createBoard._id);
-        router.push(`/section11/${result.data.createBoard._id}`);
+        console.log(result.data.updateBoard._id);
+        router.push(`/section11/${result.data.updateBoard._id}`);
       } catch (error) {
         alert(error.message);
       }
