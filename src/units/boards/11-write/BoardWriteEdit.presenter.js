@@ -12,7 +12,7 @@ import {
   UploadBox,
   Upload,
   RegisterBtn,
-} from "./BoardWrite.styled";
+} from "../11-write/BoardWrite.styled";
 
 export default function BoardWriteEditUI(props) {
   return (
@@ -26,6 +26,8 @@ export default function BoardWriteEditUI(props) {
             type="text"
             onChange={props.WriterCheck}
             placeholder="이름을 적어주세요."
+            defaultValue={props.data?.fetchBoard.writer}
+            readOnly={props.data?.fetchBoard.writer}
           />
         </Title>
         <Title>
@@ -44,6 +46,7 @@ export default function BoardWriteEditUI(props) {
         type="text"
         onChange={props.TitleCheck}
         placeholder="제목을 작성해주세요."
+        defaultValue={props.data?.fetchBoard.title}
       />
       <label htmlFor="content">내용</label>
       <div className="Error">{props.contentsError}</div>
@@ -52,6 +55,7 @@ export default function BoardWriteEditUI(props) {
         rows="10"
         onChange={props.ContentCheck}
         placeholder="내용을 작성해주세요."
+        defaultValue={props.data?.fetchBoard.contents}
       ></ContentArea>
       <label htmlFor="area">주소</label>
       <ContentBox>
@@ -73,7 +77,10 @@ export default function BoardWriteEditUI(props) {
         <input type="radio" name="youtube" /> 유튜브
         <input type="radio" name="youtube" /> 사진
       </ContentBox>
-      <RegisterBtn onClick={props.RegisterCheck} disabled={props.isTrue}>
+      <RegisterBtn
+        onClick={props.isEdit ? props.onClickEdit : props.onClickNew}
+        disabled={props.isEdit ? false : props.isTrue}
+      >
         {props.isEdit ? "수정" : "등록"}하기
       </RegisterBtn>
     </Wrapper>
