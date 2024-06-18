@@ -12,26 +12,28 @@ import {
   UploadBox,
   Upload,
   RegisterBtn,
-} from "../11-write/BoardWrite.styled";
+} from "./BoardWrite.styled";
+import { IBoardWriteEditProps } from "./BoardWrite.types"
 
-export default function BoardWriteEditUI(props) {
+
+export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
   return (
     <Wrapper>
       <TitleText>게시물 {props.isEdit ? "수정" : "등록"}</TitleText>
       <HeaderTitle>
         <Title>
-          <label htmlFor="writter">작성자</label>
+          <label htmlFor="writer">작성자</label>
           <div className="Error">{props.writerError}</div>
           <ContentTitle
             type="text"
             onChange={props.WriterCheck}
             placeholder="이름을 적어주세요."
-            defaultValue={props.data?.fetchBoard.writer}
-            readOnly={props.data?.fetchBoard.writer}
+            defaultValue={props.data?.fetchBoard.writer ?? ""}
+            readOnly={!!props.data?.fetchBoard.writer} //!! 두개는 true임 ! 한개는 false 명시적으로 true로 바꾸고싶을때 사용
           />
         </Title>
         <Title>
-          <label for="password">비밀번호</label>
+          <label>비밀번호</label>
           <div className="Error">{props.pwError}</div>
           <ContentTitle
             type="password"
@@ -51,8 +53,8 @@ export default function BoardWriteEditUI(props) {
       <label htmlFor="content">내용</label>
       <div className="Error">{props.contentsError}</div>
       <ContentArea
-        cols="50"
-        rows="10"
+        cols={50}
+        rows={10}
         onChange={props.ContentCheck}
         placeholder="내용을 작성해주세요."
         defaultValue={props.data?.fetchBoard.contents}

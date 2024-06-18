@@ -21,15 +21,18 @@ export const Header = styled.div`
   width: 996px;
   justify-content: space-between;
 `;
-export const ProfileBox = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
+
 export const Writer = styled.text`
   font-size: 24px;
   font-weight: 500;
   text-align: left;
 `;
+
+export const ProfileBox = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
 export const Date = styled.text`
   font-size: 16px;
   font-weight: 400;
@@ -70,18 +73,4 @@ export const BoardBtn = styled.button`
   &:hover {
     opacity: 1;
   }
-`;
-
-export const CommentWrapper = styled.div`
-  width: 1370px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  gap: 30px;
-`;
-
-export const CommentInput = styled.input`
-  width: 1370px;
-  padding: 15px 0 90px 15px;
-  text-align: start;
 `;

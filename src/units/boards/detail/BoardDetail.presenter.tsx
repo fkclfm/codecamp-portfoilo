@@ -1,4 +1,5 @@
-import { getDate } from "../../../common/year";
+import { getDate } from "../../../commons/year";
+import { IBoardDetailProps } from "./BoardDetail.types"
 import {
   Entire,
   Wrapper,
@@ -10,11 +11,9 @@ import {
   Date,
   BoardBtn,
   BtnBox,
-  CommentInput,
-  CommentWrapper,
 } from "./BoardDetail.styled";
 
-export default function BoardDetailUI(props) {
+export default function BoardDetailUI(props : IBoardDetailProps) {
   return (
     <>
       <Entire>
@@ -42,16 +41,6 @@ export default function BoardDetailUI(props) {
           </BoardBtn>
         </BtnBox>
         <HorizonLine />
-
-        <CommentWrapper>
-          <Writer>댓글</Writer>
-          <CommentInput
-            type="text"
-            placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 
-          불법 정보 유포시 모니터링 후 삭제될 수 있으며, 
-          이에 대한 민형사상 책임은 게시자에게 있습니다."
-          />
-        </CommentWrapper>
       </Entire>
     </>
   );

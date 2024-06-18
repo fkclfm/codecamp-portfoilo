@@ -1,13 +1,16 @@
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteEditUI from "./BoardWriteEdit.presenter";
+import { IupdateBoardInput, IBoardWriteProps } from "./BoardWrite.types"
+import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "../../../commons/type/generated/types";
 
-export default function BoardWrite(props) {
+
+export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const [createBoard] = useMutation(CREATE_BOARD);
-  const [updateBoard] = useMutation(UPDATE_BOARD);
+  const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD);
+  const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
 
   const [isTrue, setIsTrue] = useState(true);
   const [writer, setWriter] = useState("");
@@ -20,7 +23,7 @@ export default function BoardWrite(props) {
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  function onWriterCheck(event) {
+  function onWriterCheck(event : ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
     if (event.target.value != "") {
       setWriterError("");
@@ -33,7 +36,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onPwCheck(event) {
+  function onPwCheck(event : ChangeEvent<HTMLInputElement>) {
     setPw(event.target.value);
     if (event.target.value != "") {
       setPwError("");
@@ -46,7 +49,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onTitleCheck(event) {
+  function onTitleCheck(event : ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
     if (event.target.value != "") {
       setTitleError("");
@@ -58,7 +61,7 @@ export default function BoardWrite(props) {
     }
   }
 
-  function onContentCheck(event) {
+  function onContentCheck(event : ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
     if (event.target.value != "") {
       setContentsError("");
@@ -97,10 +100,14 @@ export default function BoardWrite(props) {
           },
         });
         alert("게시글 등록이 완료되었습니다.");
-        console.log(result.data.createBoard._id);
-        router.push(`/section11/${result.data.createBoard._id}`);
+        console.log(result.data?.createBoard._id);
+        router.push(`/section11/${result.data?.createBoard._id}`);
       } catch (error) {
-        alert(error.message);
+        if (error instanceof Error) {
+          alert(error.message); // 안전하게 `error.message`에 접근
+      } else {
+          alert("An unknown error occurred");
+      }
       }
     }
   };
@@ -117,7 +124,7 @@ export default function BoardWrite(props) {
       return;
     }
 
-    const updateBoardInput = {}; // 어차피 쿼리에서도 단독 객체에서 넣어야하니까 객체를 생성해서 만든다.
+    const updateBoardInput:IupdateBoardInput = {}; // 어차피 쿼리에서도 단독 객체에서 넣어야하니까 객체를 생성해서 만든다.
     // title, contents가 필요하니까 키랑 값을 만들어줌.(엄청 어려웠따... ㄹㅇ)
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
@@ -127,13 +134,17 @@ export default function BoardWrite(props) {
         variables: {
           updateBoardInput,
           password: pw,
-          boardId: router.query.board,
+          boardId: String(router.query.board),
         },
       });
       alert("작성된 글이 수정되었습니다.");
       router.push(`/section11/${router.query.board}`);
     } catch (error) {
-      alert(error.message);
+      if (error instanceof Error) {
+        alert(error.message); // 안전하게 `error.message`에 접근
+    } else {
+        alert("An unknown error occurred");
+    }
     }
   };
   return (

@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client"
 import { useRouter } from "next/router"
 import { FETCH_BOARDS } from "./BoardList.queries"
 import BoardWriteUI from "./BoardList.presenter"
-
+import { MouseEvent } from "react";
 
 export default function BoardWrite() {
   const router = useRouter()
@@ -10,8 +10,8 @@ export default function BoardWrite() {
 
   console.log(data) 
 
-  const onClickMoveToBoardDetail = (event) => {
-    router.push(`/section11/${event.target.id}`)
+  const onClickMoveToBoardDetail = (event : MouseEvent<HTMLDivElement>) => {
+    router.push(`/section11/${ event.currentTarget.id }`)
   }
 
   const onClickMoveToBoardNew = () => {
