@@ -1,31 +1,65 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, MouseEvent } from "react";
 import { useMutation } from "@apollo/client";
 import { useRouter } from "next/router";
 import { CREATE_BOARD, UPDATE_BOARD } from "./BoardWrite.queries";
 import BoardWriteEditUI from "./BoardWriteEdit.presenter";
-import { IupdateBoardInput, IBoardWriteProps } from "./BoardWrite.types"
-import { IMutation, IMutationCreateBoardArgs, IMutationUpdateBoardArgs } from "../../../commons/type/generated/types";
-
+import { IupdateBoardInput, IBoardWriteProps } from "./BoardWrite.types";
+import {
+  IMutation,
+  IMutationCreateBoardArgs,
+  IMutationUpdateBoardArgs,
+} from "../../../commons/type/generated/types";
+import { Modal } from "antd";
+import { Address } from "react-daum-postcode";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
-  const [createBoard] = useMutation<Pick<IMutation, "createBoard">, IMutationCreateBoardArgs>(CREATE_BOARD);
-  const [updateBoard] = useMutation<Pick<IMutation, "updateBoard">, IMutationUpdateBoardArgs>(UPDATE_BOARD);
-
+  const [createBoard] = useMutation<
+    Pick<IMutation, "createBoard">,
+    IMutationCreateBoardArgs
+  >(CREATE_BOARD);
+  const [updateBoard] = useMutation<
+    Pick<IMutation, "updateBoard">,
+    IMutationUpdateBoardArgs
+  >(UPDATE_BOARD);
+  const [isOpen, setIsOpen] = useState(false);
   const [isTrue, setIsTrue] = useState(true);
+  const [zonecode, setZoneCode] = useState("");
+  const [selectAddress, setSelectAddress] = useState("");
+  const [addressDetail, setAddressDetail] = useState("");
   const [writer, setWriter] = useState("");
   const [pw, setPw] = useState("");
   const [title, setTitle] = useState("");
   const [contents, setContents] = useState("");
+  const [youtubeUrl, setYoutubeUrl] = useState("");
 
   const [writerError, setWriterError] = useState("");
   const [pwError, setPwError] = useState("");
   const [titleError, setTitleError] = useState("");
   const [contentsError, setContentsError] = useState("");
 
-  function onWriterCheck(event : ChangeEvent<HTMLInputElement>) {
+  console.log(props.data);
+  const handleModal = (event: MouseEvent<HTMLButtonElement>) => {
+    setIsOpen((prev) => !prev);
+  };
+
+  const handleComplete = (data: Address) => {
+    if (data.jibunAddress) {
+      setSelectAddress(data.jibunAddress);
+    } else {
+      setSelectAddress(data.address);
+    }
+    setZoneCode(data.zonecode);
+    console.log(data);
+  };
+
+  const onAddressDetail = (event: ChangeEvent<HTMLInputElement>) => {
+    setAddressDetail(event.target.value);
+  };
+
+  function onWriterCheck(event: ChangeEvent<HTMLInputElement>) {
     setWriter(event.target.value);
-    if (event.target.value != "") {
+    if (event.target.value !== "") {
       setWriterError("");
     }
 
@@ -36,9 +70,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onPwCheck(event : ChangeEvent<HTMLInputElement>) {
+  function onPwCheck(event: ChangeEvent<HTMLInputElement>) {
     setPw(event.target.value);
-    if (event.target.value != "") {
+    if (event.target.value !== "") {
       setPwError("");
     }
 
@@ -49,9 +83,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onTitleCheck(event : ChangeEvent<HTMLInputElement>) {
+  function onTitleCheck(event: ChangeEvent<HTMLInputElement>) {
     setTitle(event.target.value);
-    if (event.target.value != "") {
+    if (event.target.value !== "") {
       setTitleError("");
     }
     if (writer && pw && event.target.value && contents) {
@@ -61,9 +95,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
     }
   }
 
-  function onContentCheck(event : ChangeEvent<HTMLTextAreaElement>) {
+  function onContentCheck(event: ChangeEvent<HTMLTextAreaElement>) {
     setContents(event.target.value);
-    if (event.target.value != "") {
+    if (event.target.value !== "") {
       setContentsError("");
     }
     if (writer && pw && title && event.target.value) {
@@ -72,7 +106,9 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setIsTrue(true);
     }
   }
-
+  function onYoutubeUrlCheck(event: ChangeEvent<HTMLInputElement>) {
+    setYoutubeUrl(event.target.value);
+  }
   const onClickNew = async () => {
     if (writer === "") {
       setWriterError("작성자를 작성해주세요.");
@@ -87,47 +123,68 @@ export default function BoardWrite(props: IBoardWriteProps) {
       setContentsError("내용을 작성해주세요.");
     }
 
-    if (writer && pw && title && contents) {
+    if (
+      writer &&
+      pw &&
+      title &&
+      contents &&
+      youtubeUrl &&
+      zonecode &&
+      selectAddress
+    ) {
       try {
         const result = await createBoard({
           variables: {
             createBoardInput: {
-              writer: writer,
+              writer,
               password: pw,
-              title: title,
-              contents: contents,
+              title,
+              contents,
+              youtubeUrl,
+              boardAddress: {
+                zipcode: zonecode,
+                address: selectAddress,
+                addressDetail,
+              },
             },
           },
         });
-        alert("게시글 등록이 완료되었습니다.");
-        console.log(result.data?.createBoard._id);
+        Modal.success({ content: "게시글 등록에 성공하였습니다." });
         router.push(`/section11/${result.data?.createBoard._id}`);
       } catch (error) {
         if (error instanceof Error) {
-          alert(error.message); // 안전하게 `error.message`에 접근
-      } else {
+          Modal.error({ content: "게시글 등록에 실패하였습니다." });
+        } else {
           alert("An unknown error occurred");
-      }
+        }
       }
     }
   };
 
   const onClickEdit = async () => {
-    if (!title && !contents) {
+    if (!title && !contents && !youtubeUrl) {
       //if쓸 때 긍정문으로 쓰지말고 부정문으로 쓰는게 실무에서 효과적!
-      alert("수정한 내용이 없습니다.");
+      Modal.error({ content: "제목, 내용, 링크 중 하나를 입력해주세요." });
       return;
     }
 
     if (!pw) {
-      alert("비밀번호를 입력해주세요.");
+      Modal.error({ content: "비밀번호가 입력되지 않았습니다." });
       return;
     }
 
-    const updateBoardInput:IupdateBoardInput = {}; // 어차피 쿼리에서도 단독 객체에서 넣어야하니까 객체를 생성해서 만든다.
+    const updateBoardInput: IupdateBoardInput = {}; // 어차피 쿼리에서도 단독 객체에서 넣어야하니까 객체를 생성해서 만든다.
     // title, contents가 필요하니까 키랑 값을 만들어줌.(엄청 어려웠따... ㄹㅇ)
     if (title) updateBoardInput.title = title;
     if (contents) updateBoardInput.contents = contents;
+    if (youtubeUrl) updateBoardInput.youtubeUrl = youtubeUrl;
+    if (zonecode !== "" && selectAddress !== "" && addressDetail !== "") {
+      updateBoardInput.boardAddress = {};
+      if (zonecode) updateBoardInput.boardAddress.zipcode = zonecode;
+      if (selectAddress) updateBoardInput.boardAddress.address = selectAddress;
+      if (addressDetail)
+        updateBoardInput.boardAddress.addressDetail = addressDetail;
+    }
 
     try {
       await updateBoard({
@@ -137,28 +194,35 @@ export default function BoardWrite(props: IBoardWriteProps) {
           boardId: String(router.query.board),
         },
       });
-      alert("작성된 글이 수정되었습니다.");
+      Modal.success({ content: "게시글 수정에 성공하였습니다." });
       router.push(`/section11/${router.query.board}`);
     } catch (error) {
       if (error instanceof Error) {
-        alert(error.message); // 안전하게 `error.message`에 접근
-    } else {
+        Modal.error({ content: "비밀번호가 잘못 입력되었습니다." });
+      } else {
         alert("An unknown error occurred");
-    }
+      }
     }
   };
   return (
     <BoardWriteEditUI
+      handleModal={handleModal}
+      handleComplete={handleComplete}
       onClickNew={onClickNew}
       onClickEdit={onClickEdit}
       WriterCheck={onWriterCheck}
       PwCheck={onPwCheck}
       TitleCheck={onTitleCheck}
       ContentCheck={onContentCheck}
+      onYoutubeUrlCheck={onYoutubeUrlCheck}
+      onAddressDetail={onAddressDetail}
       writerError={writerError}
       pwError={pwError}
       titleError={titleError}
       contentsError={contentsError}
+      selectAddress={selectAddress}
+      zonecode={zonecode}
+      isOpen={isOpen}
       isTrue={isTrue}
       data={props.data}
       isEdit={props.isEdit}

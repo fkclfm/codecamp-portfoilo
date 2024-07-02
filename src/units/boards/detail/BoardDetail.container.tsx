@@ -1,18 +1,78 @@
 import BoardDetailUI from "./BoardDetail.presenter";
 import { useRouter } from "next/router";
 import { useMutation, useQuery } from "@apollo/client";
-import { FETCH_BOARD, DELETE_BOARD } from "./BoardDetail.queries";
+import {
+  FETCH_BOARD,
+  DELETE_BOARD,
+  LIKE_BOARD,
+  DISLIKE_BOARD,
+} from "./BoardDetail.queries";
 import { MouseEvent } from "react";
+import {
+  IMutation,
+  IMutationDeleteBoardArgs,
+  IMutationDislikeBoardArgs,
+  IMutationLikeBoardArgs,
+} from "../../../commons/type/generated/types";
+import { Modal } from "antd";
 
 export default function BoardDetail() {
   const router = useRouter();
-  const [deleteBoard] = useMutation(DELETE_BOARD);
+  const [deleteBoard] = useMutation<
+    Pick<IMutation, "deleteBoard">,
+    IMutationDeleteBoardArgs
+  >(DELETE_BOARD);
+  const [likeBoard] = useMutation<
+    Pick<IMutation, "likeBoard">,
+    IMutationLikeBoardArgs
+  >(LIKE_BOARD);
+  const [dislikeBoard] = useMutation<
+    Pick<IMutation, "dislikeBoard">,
+    IMutationDislikeBoardArgs
+  >(DISLIKE_BOARD);
   const { data } = useQuery(FETCH_BOARD, {
     variables: {
       boardId: router.query.board,
     },
   });
-  const onClickDelete = (event : MouseEvent<HTMLButtonElement>) => {
+  console.log(data);
+  const onClickLike = (event: MouseEvent<HTMLImageElement>) => {
+    try {
+      likeBoard({
+        variables: { boardId: String(router.query.board) },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD,
+            variables: { boardId: router.query.board },
+          },
+        ],
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    }
+  };
+
+  const onClickDisLike = (event: MouseEvent<HTMLImageElement>) => {
+    try {
+      dislikeBoard({
+        variables: { boardId: String(router.query.board) },
+        refetchQueries: [
+          {
+            query: FETCH_BOARD,
+            variables: { boardId: router.query.board },
+          },
+        ],
+      });
+    } catch (error) {
+      if (error instanceof Error) {
+        alert(error.message);
+      }
+    }
+  };
+
+  const onClickDelete = (event: MouseEvent<HTMLButtonElement>) => {
     try {
       deleteBoard({
         variables: { boardId: event.currentTarget.id },
@@ -23,10 +83,10 @@ export default function BoardDetail() {
           },
         ],
       });
-      alert("게시물이 성공적으로 삭제되었습니다.");
+      Modal.success({ content: "게시글이 성공적으로 삭제되었습니다." });
       router.push("/section11");
     } catch (error) {
-      if(error instanceof Error) {
+      if (error instanceof Error) {
         alert(error.message);
       }
     }
@@ -47,6 +107,8 @@ export default function BoardDetail() {
       onClickDelete={onClickDelete}
       onClickList={onClickList}
       onClickEdit={onClickEdit}
+      onClickLike={onClickLike}
+      onClickDisLike={onClickDisLike}
     />
   );
 }

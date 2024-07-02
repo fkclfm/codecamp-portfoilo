@@ -1,3 +1,4 @@
+import { Modal } from "antd";
 import {
   Wrapper,
   HeaderTitle,
@@ -13,8 +14,8 @@ import {
   Upload,
   RegisterBtn,
 } from "./BoardWrite.styled";
-import { IBoardWriteEditProps } from "./BoardWrite.types"
-
+import { IBoardWriteEditProps } from "./BoardWrite.types";
+import DaumPostcodeEmbed from "react-daum-postcode";
 
 export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
   return (
@@ -28,7 +29,7 @@ export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
             type="text"
             onChange={props.WriterCheck}
             placeholder="이름을 적어주세요."
-            defaultValue={props.data?.fetchBoard.writer ?? ""}
+            defaultValue={props.data?.fetchBoard.title ?? ""}
             readOnly={!!props.data?.fetchBoard.writer} //!! 두개는 true임 ! 한개는 false 명시적으로 true로 바꾸고싶을때 사용
           />
         </Title>
@@ -61,13 +62,50 @@ export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
       ></ContentArea>
       <label htmlFor="area">주소</label>
       <ContentBox>
-        <Address type="text" placeholder="07250" />
-        <Btn>우편번호 검색</Btn>
+        <Address
+          type="text"
+          placeholder="07250"
+          readOnly
+          value={
+            props.zonecode !== ""
+              ? props.zonecode
+              : props.data?.fetchBoard.boardAddress?.zipcode ?? ""
+          }
+        />
+        <Btn onClick={props.handleModal}>우편번호 검색</Btn>
+        {props.isOpen && (
+          <Modal
+            open={true}
+            onOk={props.handleModal}
+            onCancel={props.handleModal}
+          >
+            <DaumPostcodeEmbed onComplete={props.handleComplete} />
+            <span>주소 : {props.selectAddress}</span>
+          </Modal>
+        )}
       </ContentBox>
-      <Content type="text" />
-      <Content type="text" />
+      <Content
+        type="text"
+        readOnly
+        value={
+          props.selectAddress !== "" //쉽게 말해서 이 값이 있으면? 정상적으로 스테이트에 있는 값 출력 없으면? 이미 fetchBoard에 등록된거 불러오기
+            ? props.selectAddress
+            : props.data?.fetchBoard.boardAddress?.address ?? ""
+        }
+      />
+      <Content
+        type="text"
+        placeholder="상세 주소를 기입해주세요."
+        onChange={props.onAddressDetail}
+        defaultValue={props.data?.fetchBoard?.boardAddress?.addressDetail ?? ""}
+      />
       <label htmlFor="youtube">유튜브</label>
-      <Content type="text" placeholder="링크를 복사해주세요." />
+      <Content
+        type="text"
+        placeholder="링크를 복사해주세요."
+        onChange={props.onYoutubeUrlCheck}
+        defaultValue={props.data?.fetchBoard.youtubeUrl ?? ""}
+      />
       <label htmlFor="picture">사진 첨부</label>
       <UploadBox>
         <Upload></Upload>

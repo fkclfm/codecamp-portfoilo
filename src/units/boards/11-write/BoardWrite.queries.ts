@@ -4,9 +4,6 @@ export const CREATE_BOARD = gql`
   mutation createBoard($createBoardInput: CreateBoardInput!) {
     createBoard(createBoardInput: $createBoardInput) {
       _id
-      writer
-      title
-      contents
     }
   }
 `;
@@ -23,9 +20,6 @@ export const UPDATE_BOARD = gql`
       boardId: $boardId
     ) {
       _id
-      writer
-      title
-      contents
     }
   }
 `;

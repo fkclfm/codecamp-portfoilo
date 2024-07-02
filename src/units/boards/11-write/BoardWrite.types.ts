@@ -1,28 +1,42 @@
-import { ChangeEvent, MouseEvent } from "react"
-import { IMutation, IQuery } from "../../../commons/type/generated/types"
+import { ChangeEvent, MouseEvent } from "react";
+import { IQuery } from "../../../commons/type/generated/types";
+import { Address } from "react-daum-postcode";
 
 export interface IBoardWriteProps {
-  isEdit : boolean
-  data?: Pick<IQuery, "fetchBoard"> 
+  isEdit: boolean;
+  data?: Pick<IQuery, "fetchBoard">;
 }
 
 export interface IupdateBoardInput {
-  title?: string
-  contents?: string
+  title?: string;
+  contents?: string;
+  youtubeUrl?: string;
+  boardAddress?: {
+    zipcode?: string;
+    address?: string;
+    addressDetail?: string;
+  };
 }
 
 export interface IBoardWriteEditProps {
-  onClickNew : (event: MouseEvent<HTMLButtonElement>) => void
-  onClickEdit : (event: MouseEvent<HTMLButtonElement>) => void
-  PwCheck : (event : ChangeEvent<HTMLInputElement>) => void
-  WriterCheck : (event : ChangeEvent<HTMLInputElement>) => void
-  TitleCheck : (event : ChangeEvent<HTMLInputElement>) => void
-  ContentCheck : (event : ChangeEvent<HTMLTextAreaElement>) => void
-  writerError : string
-  pwError : string
-  titleError : string
-  contentsError : string
-  isTrue : boolean
-  data?: Pick<IQuery, "fetchBoard">  
-  isEdit : boolean
+  handleModal: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleComplete: (data: Address) => void;
+  onClickNew: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClickEdit: (event: MouseEvent<HTMLButtonElement>) => void;
+  PwCheck: (event: ChangeEvent<HTMLInputElement>) => void;
+  WriterCheck: (event: ChangeEvent<HTMLInputElement>) => void;
+  TitleCheck: (event: ChangeEvent<HTMLInputElement>) => void;
+  ContentCheck: (event: ChangeEvent<HTMLTextAreaElement>) => void;
+  onYoutubeUrlCheck: (event: ChangeEvent<HTMLInputElement>) => void;
+  onAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  writerError: string;
+  pwError: string;
+  titleError: string;
+  contentsError: string;
+  selectAddress: string;
+  zonecode: string;
+  isTrue: boolean;
+  isOpen: boolean;
+  data?: Pick<IQuery, "fetchBoard">;
+  isEdit: boolean;
 }

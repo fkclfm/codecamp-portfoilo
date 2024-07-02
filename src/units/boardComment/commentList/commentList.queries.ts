@@ -1,4 +1,4 @@
-import { gql } from "@apollo/client"
+import { gql } from "@apollo/client";
 
 export const FETCH_BOARD_COMMENTS = gql`
   query fetchBoardComments($boardId: ID!) {
@@ -7,30 +7,31 @@ export const FETCH_BOARD_COMMENTS = gql`
       writer
       contents
       createdAt
+      rating
     }
   }
 `;
 
 export const DELETE_BOARD_COMMENT = gql`
   mutation deleteBoardComment($password: String, $boardCommentId: ID!) {
-    deleteBoardComment(password: $password, boardCommentId: $boardCommentId) 
+    deleteBoardComment(password: $password, boardCommentId: $boardCommentId)
   }
 `;
 
 export const UPDATE_BOARD_COMMENT = gql`
   mutation updateBoardComment(
-    $updateBoardCommentInput: UpdateBoardCommentInput!,
-    $password: String,
+    $updateBoardCommentInput: UpdateBoardCommentInput!
+    $password: String
     $boardCommentId: ID!
   ) {
     updateBoardComment(
-      updateBoardCommentInput: $updateBoardCommentInput,
-      password: $password,
-      boardCommentId: $boardCommentId,
-      ) {
-        _id
-        writer
-        contents
+      updateBoardCommentInput: $updateBoardCommentInput
+      password: $password
+      boardCommentId: $boardCommentId
+    ) {
+      _id
+      writer
+      contents
     }
   }
 `;

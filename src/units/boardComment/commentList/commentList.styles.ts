@@ -36,6 +36,14 @@ export const CommentContentBox = styled.div`
   gap: 3px;
 `;
 
+export const ContentHeader = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+`;
+
 export const CommentWriter = styled.span`
   font-size: 16px;
   font-weight: 500;
@@ -58,18 +66,18 @@ export const CommentBtnBox = styled.div`
   display: flex;
   flex-direction: row;
   gap: 20px;
-`
+`;
 export const CommentEditBtn = styled.button`
   width: 50px;
   height: 30px;
-`
+`;
 
 export const CommentDeleteBtn = styled.button`
   background: black;
   color: white;
   width: 50px;
   height: 30px;
-`
+`;
 
 export const HorizonLine = styled.div`
   border-bottom: 1px solid #bdbdbd;

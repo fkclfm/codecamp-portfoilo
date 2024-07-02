@@ -18,8 +18,10 @@ export const Wrapper = styled.div`
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
-  width: 996px;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
+  margin-top: 45px;
 `;
 
 export const Writer = styled.text`
@@ -31,6 +33,8 @@ export const Writer = styled.text`
 export const ProfileBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 `;
 
 export const Date = styled.text`
@@ -40,6 +44,7 @@ export const Date = styled.text`
 `;
 
 export const HorizonLine = styled.div`
+  width: 100%;
   border-bottom: 1px solid #bdbdbd;
   height: 1px;
   margin-bottom: 60px;
@@ -73,4 +78,43 @@ export const BoardBtn = styled.button`
   &:hover {
     opacity: 1;
   }
+`;
+
+export const RatingBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+`;
+
+export const LikeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #ffd600;
+`;
+
+export const DisLikeBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  color: #828282;
+`;
+
+export const YoutubeBox = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AreaBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const location = styled.img`
+  width: 32px;
+  height: 32px;
 `;
