@@ -1,7 +1,15 @@
 {
   "compilerOptions": {
     "target": "es5",
+<<<<<<< HEAD
     "lib": ["dom", "dom.iterable", "esnext"],
+=======
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+>>>>>>> laptop-work
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,8 +26,16 @@
   "include": [
     "next-env.d.ts",
     "**/*.ts",
+<<<<<<< HEAD
     "**/*.tsx",
     "src/units/boardComment/commentEdit/commentEdit.containertsx"
   ],
   "exclude": ["node_modules"]
+=======
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+>>>>>>> laptop-work
 }

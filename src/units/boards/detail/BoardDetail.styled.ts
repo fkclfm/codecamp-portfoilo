@@ -15,7 +15,10 @@ export const Wrapper = styled.div`
   gap: 15px;
   text-align: center;
 `;
+<<<<<<< HEAD
 
+=======
+>>>>>>> laptop-work
 export const Header = styled.div`
   display: flex;
   flex-direction: row;
@@ -119,6 +122,7 @@ export const location = styled.img`
   width: 32px;
   height: 32px;
 `;
+<<<<<<< HEAD
 
 export const ImageBox = styled.div`
   display: flex;
@@ -131,3 +135,5 @@ export const Image = styled.img`
   width: 450px;
   height: 450px;
 `;
+=======
+>>>>>>> laptop-work

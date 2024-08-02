@@ -1,8 +1,15 @@
+<<<<<<< HEAD
+=======
+import { getDate } from "../../../commons/year";
+>>>>>>> laptop-work
 import { IBoardDetailProps } from "./BoardDetail.types";
 import * as W from "./BoardDetail.styled"; // 스타일을 W로 한번에 임포트
 import ReactPlayer from "react-player";
 import { Tooltip } from "antd";
+<<<<<<< HEAD
 import { getDate } from "../../../commons/year";
+=======
+>>>>>>> laptop-work
 
 export default function BoardDetailUI(props: IBoardDetailProps) {
   return (
@@ -14,7 +21,11 @@ export default function BoardDetailUI(props: IBoardDetailProps) {
             <W.Date>Date : {getDate(props.data?.fetchBoard.createdAt)}</W.Date>
           </W.ProfileBox>
           <W.AreaBox>
+<<<<<<< HEAD
             <W.location src="/images/ic_link.png" />
+=======
+            <W.location src="/images/ic_location.png" />
+>>>>>>> laptop-work
             <Tooltip
               placement="topRight"
               title={`${props.data?.fetchBoard.boardAddress?.address ?? ""} 
@@ -29,11 +40,14 @@ export default function BoardDetailUI(props: IBoardDetailProps) {
         <W.TitleText>{props.data?.fetchBoard.title}</W.TitleText>
         {/* 글 내용 */}
         {props.data?.fetchBoard.contents}
+<<<<<<< HEAD
         <W.ImageBox>
           <W.Image
             src={`https://storage.googleapis.com/${props.data?.fetchBoard.images}`}
           />
         </W.ImageBox>
+=======
+>>>>>>> laptop-work
         <W.YoutubeBox>
           <ReactPlayer
             url={String(props.data?.fetchBoard.youtubeUrl)}

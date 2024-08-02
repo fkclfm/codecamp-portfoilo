@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { AppProps } from "next/app";
 import { Global } from "@emotion/react";
 import { globalStyles } from "../src/commons/styles/globalStyles";
@@ -18,4 +19,19 @@ export default function App({ Component, pageProps }: AppProps) {
       </ApolloSetting>
     </RecoilRoot>
   );
+=======
+import { ApolloClient, ApolloProvider, InMemoryCache } from "@apollo/client";
+import "../src/fonts/index.css"
+
+export default function App({ Component }) {
+  const client = new ApolloClient ({
+    uri : "https://backend-practice.codebootcamp.co.kr/graphql",
+    cache : new InMemoryCache() 
+  })
+  return (
+    <ApolloProvider client={client}>
+      <Component />
+    </ApolloProvider>
+  )
+>>>>>>> laptop-work
 }

@@ -1,6 +1,10 @@
 import { gql } from "@apollo/client";
 
+<<<<<<< HEAD
 export const CREATE_BOARD_COMMENT = gql`
+=======
+export const CREATE_BOARDCOMMENT = gql`
+>>>>>>> laptop-work
   mutation createBoardComment(
     $boardId: ID!
     $createBoardCommentInput: CreateBoardCommentInput!
@@ -16,6 +20,7 @@ export const CREATE_BOARD_COMMENT = gql`
     }
   }
 `;
+<<<<<<< HEAD
 
 export const UPDATE_BOARD_COMMENT = gql`
   mutation updateBoardComment(
@@ -34,3 +39,5 @@ export const UPDATE_BOARD_COMMENT = gql`
     }
   }
 `;
+=======
+>>>>>>> laptop-work
