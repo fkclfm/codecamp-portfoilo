@@ -1,41 +1,31 @@
 {
   "compilerOptions": {
-    "target": "es5",
-<<<<<<< HEAD
-    "lib": ["dom", "dom.iterable", "esnext"],
-=======
+    "target": "es5",                            // ES5로 컴파일
     "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
+      "dom",                                   // DOM 라이브러리 포함
+      "dom.iterable",                          // DOM iterable 라이브러리 포함
+      "esnext"                                 // ESNext 라이브러리 포함
     ],
->>>>>>> laptop-work
-    "allowJs": true,
-    "skipLibCheck": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "incremental": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "jsx": "preserve"
+    "allowJs": true,                           // JavaScript 파일 허용
+    "skipLibCheck": true,                      // 라이브러리 체크 생략
+    "strict": true,                            // 모든 엄격한 타입 검사를 활성화
+    "forceConsistentCasingInFileNames": true,  // 파일 이름의 대소문자 일관성 강제
+    "noEmit": true,                            // 컴파일 시 파일 출력 안 함
+    "incremental": true,                       // 증분 컴파일 활성화
+    "esModuleInterop": true,                   // ES 모듈과 CommonJS 모듈 간의 호환성
+    "module": "esnext",                        // 모듈 시스템 설정
+    "moduleResolution": "node",                // 모듈 해석 방식 설정
+    "resolveJsonModule": true,                 // JSON 모듈을 TypeScript에서 모듈로 인식
+    "isolatedModules": true,                   // 모듈이 독립적으로 동작하도록 설정
+    "jsx": "preserve"                          // JSX를 TypeScript에서 보존
   },
   "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-<<<<<<< HEAD
-    "**/*.tsx",
-    "src/units/boardComment/commentEdit/commentEdit.containertsx"
-  ],
-  "exclude": ["node_modules"]
-=======
-    "**/*.tsx"
+    "next-env.d.ts",                          // Next.js 환경 설정 파일
+    "**/*.ts",                                // 모든 TypeScript 파일 포함
+    "**/*.tsx",                               // 모든 TypeScript JSX 파일 포함
+    "src/units/boardComment/commentEdit/commentEdit.container.tsx" // 특정 파일 포함
   ],
   "exclude": [
-    "node_modules"
+    "node_modules"                            // node_modules 폴더 제외
   ]
->>>>>>> laptop-work
 }
