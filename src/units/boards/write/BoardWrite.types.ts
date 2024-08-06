@@ -1,5 +1,5 @@
-import { ChangeEvent, Dispatch, MouseEvent, SetStateAction } from "react";
-import { IMutation, IQuery } from "../../../commons/type/generated/types";
+import { ChangeEvent, MouseEvent } from "react";
+import { IQuery } from "../../../commons/type/generated/types";
 import { Address } from "react-daum-postcode";
 
 export interface IBoardWriteProps {
@@ -11,7 +11,7 @@ export interface IupdateBoardInput {
   title?: string;
   contents?: string;
   youtubeUrl?: string;
-  images?: Pick<IMutation, "uploadFile">;
+  images?: string[];
   boardAddress?: {
     zipcode?: string;
     address?: string;
@@ -30,6 +30,7 @@ export interface IBoardWriteEditProps {
   ContentCheck: (event: ChangeEvent<HTMLTextAreaElement>) => void;
   onYoutubeUrlCheck: (event: ChangeEvent<HTMLInputElement>) => void;
   onAddressDetail: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeImageUrls: (ImageUrl: string, index: number) => void;
   writerError: string;
   pwError: string;
   titleError: string;
@@ -40,6 +41,5 @@ export interface IBoardWriteEditProps {
   isOpen: boolean;
   data?: Pick<IQuery, "fetchBoard">;
   isEdit: boolean;
-  ImageUrl: string[];
-  setImageUrl: Dispatch<SetStateAction<string[]>>;
+  ImageUrls: string[];
 }

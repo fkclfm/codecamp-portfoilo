@@ -5,40 +5,37 @@ import {
   IMutation,
   IMutationLoginUserArgs,
 } from "../../commons/type/generated/types";
-import { ChangeEvent, useState } from "react";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../commons/stores/GlobalState";
+import { ILoginForm } from "./Login.types";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { loginSchema } from "../../commons/schema/schema";
 
 export default function LoginPage() {
   const router = useRouter();
-  const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const { handleSubmit, register, formState } = useForm<ILoginForm>({
+    resolver: yupResolver(loginSchema),
+    mode: "onChange",
+  });
+  const [, setAccessToken] = useRecoilState(accessTokenState);
   const [loginUser] = useMutation<
     Pick<IMutation, "loginUser">,
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  const onChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.currentTarget.value);
-  };
-
-  const onChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.currentTarget.value);
-  };
-
   const onClickMoveRegister = () => {
     router.push("/register");
   };
 
-  const onClickLogin = async () => {
+  const onClickLogin = async (data: ILoginForm) => {
     try {
       const result = await loginUser({
         variables: {
-          email,
-          password,
+          email: data.email,
+          password: data.password,
         },
       });
       const accessTokens = result.data?.loginUser.accessToken;
@@ -50,8 +47,6 @@ export default function LoginPage() {
         Modal.error({ content: "로그인 토큰이 없습니다. 다시 시도해주세요." });
       }
       Modal.success({ content: "로그인에 성공하였습니다." });
-      console.log("Access Token:", accessToken);
-      console.log("Access Tokens:", accessTokens);
       router.push("/");
     } catch (error) {
       if (error instanceof Error)
@@ -63,8 +58,9 @@ export default function LoginPage() {
     <LoginPageUI
       onClickLogin={onClickLogin}
       onClickMoveRegister={onClickMoveRegister}
-      onChangeEmail={onChangeEmail}
-      onChangePassword={onChangePassword}
+      register={register}
+      handleSubmit={handleSubmit}
+      formState={formState}
     />
   );
 }

@@ -89,3 +89,9 @@ export const RegisterBtn = styled.button`
     border: 1px solid #d2d2d2;
   }
 `;
+
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;

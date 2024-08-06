@@ -4,8 +4,8 @@ import { IUploadsUIProps } from "./Uploads.types";
 export default function UploadItemUI(props: IUploadsUIProps) {
   return (
     <>
-      {props.ImageUrl !== undefined ? (
-        <UploadImage />
+      {props.ImageUrl ? (
+        <UploadImage src={`https://storage.googleapis.com/${props.ImageUrl}`} />
       ) : (
         <UploadButton onClick={props.onClickOpenImage}>
           <>+</>

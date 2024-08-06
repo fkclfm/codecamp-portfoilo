@@ -2,11 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   width: 1200px;
-<<<<<<< HEAD
   margin: 70px auto;
-=======
-  margin: 100px;
->>>>>>> laptop-work
 `;
 
 export const TableTop = styled.div`
@@ -58,11 +54,7 @@ export const ColumnTitle = styled.div`
 export const Footer = styled.div`
   display: flex;
   flex-direction: row;
-<<<<<<< HEAD
   justify-content: right;
-=======
-  justify-content: space-between;
->>>>>>> laptop-work
   padding-top: 50px;
 `;
 

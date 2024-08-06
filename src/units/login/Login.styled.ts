@@ -6,12 +6,12 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 0 200px;
+  padding: 0 250px;
 `;
 
 export const LoginCard = styled.div`
   display: flex;
-  width: 65%;
+  width: 900px;
   height: 800px;
   flex-direction: column;
   align-items: center;
@@ -68,4 +68,9 @@ export const RegisterButton = styled.button`
   border-radius: 10px;
   cursor: pointer;
   font-size: 15px;
+`;
+
+export const Error = styled.div`
+  color: red;
+  font-size: 18px;
 `;

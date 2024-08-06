@@ -11,10 +11,12 @@ import {
   ContentBox,
   Btn,
   RegisterBtn,
+  ImageWrapper,
 } from "./BoardWrite.styled";
 import { IBoardWriteEditProps } from "./BoardWrite.types";
 import DaumPostcodeEmbed from "react-daum-postcode";
 import UploadItem from "../../../components/commons/uploads/Uploads.container";
+import { v4 as uuidv4 } from "uuid";
 
 export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
   return (
@@ -106,7 +108,16 @@ export default function BoardWriteEditUI(props: IBoardWriteEditProps) {
         defaultValue={props.data?.fetchBoard.youtubeUrl ?? ""}
       />
       <label htmlFor="picture">이미지 첨부</label>
-      <UploadItem ImageUrl={props.ImageUrl} setImageUrl={props.setImageUrl} />
+      <ImageWrapper>
+        {props.ImageUrls.map((el, index) => (
+          <UploadItem
+            key={uuidv4()}
+            index={index}
+            ImageUrl={el}
+            onChangeImageUrls={props.onChangeImageUrls}
+          />
+        ))}
+      </ImageWrapper>
       <label htmlFor="main-setting">매인 설정</label>
       <ContentBox>
         <input type="radio" name="youtube" /> 유튜브

@@ -1,20 +1,12 @@
 import * as C from "./commentWrite.styles";
-<<<<<<< HEAD
 import { ICommentWriteUIProps } from "./commentWrite.types";
 import { Rate } from "antd";
 
 export default function CommentWriteUI(props: ICommentWriteUIProps) {
-=======
-import { IBoardCommentProps } from "./commentWrite.types";
-import { Rate } from "antd";
-
-export default function CommentWriteUI(props: IBoardCommentProps) {
->>>>>>> laptop-work
   return (
     <C.Entire>
       <C.CommentWrapper>
         <C.Comment>댓글</C.Comment>
-<<<<<<< HEAD
         <Rate
           allowHalf
           onChange={props.handleChange}
@@ -24,14 +16,10 @@ export default function CommentWriteUI(props: IBoardCommentProps) {
               : props.el?.rating ?? 0
           }
         />
-=======
-        <Rate allowHalf onChange={props.handleChange} value={props.rating} />
->>>>>>> laptop-work
         <C.CommentHeader>
           <C.CommentWriter
             type="text"
             placeholder="작성자"
-<<<<<<< HEAD
             onChange={props.onChangeInput}
             value={
               props.inputs.writer !== ""
@@ -40,22 +28,13 @@ export default function CommentWriteUI(props: IBoardCommentProps) {
             }
             readOnly={props.isEdit}
             id="writer"
-=======
-            onChange={props.onWriterCheck}
-            value={props.writer}
->>>>>>> laptop-work
           />
           <C.CommentPassword
             type="password"
             placeholder="비밀번호"
-<<<<<<< HEAD
             onChange={props.onChangeInput}
             value={props.inputs.password}
             id="password"
-=======
-            onChange={props.onPwCheck}
-            value={props.password}
->>>>>>> laptop-work
           />
         </C.CommentHeader>
         <C.CommentInput
@@ -63,7 +42,6 @@ export default function CommentWriteUI(props: IBoardCommentProps) {
           placeholder="개인정보를 공유 및 요청하거나, 명예 훼손, 무단 광고, 
           불법 정보 유포시 모니터링 후 삭제될 수 있으며, 
           이에 대한 민형사상 책임은 게시자에게 있습니다."
-<<<<<<< HEAD
           onChange={props.onChangeInput}
           value={
             props.inputs.contents !== ""
@@ -81,14 +59,6 @@ export default function CommentWriteUI(props: IBoardCommentProps) {
             }
           >
             {props.isEdit ? "수정" : "등록"}하기
-=======
-          onChange={props.onContentCheck}
-          value={props.contents}
-        />
-        <C.CommentBtnBox>
-          <C.CommentBtn onClick={props.onClickNewComment}>
-            등록하기
->>>>>>> laptop-work
           </C.CommentBtn>
         </C.CommentBtnBox>
       </C.CommentWrapper>

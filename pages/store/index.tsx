@@ -1,8 +1,5 @@
-import { WithAuth } from "../../src/components/commons/hocs/WithAuth";
-import CreateItemPage from "../../src/units/Markets/CreateItem/CreateItem.container";
+import ItemListContainer from "../../src/units/Markets/ItemList/ItemList.container";
 
-const CreateItem = () => {
-  return <CreateItemPage />;
-};
-
-export default WithAuth(CreateItem);
+export default function ItemList() {
+  return <ItemListContainer />;
+}

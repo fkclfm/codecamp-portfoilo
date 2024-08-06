@@ -1,16 +1,7 @@
 import styled from "@emotion/styled";
 
-<<<<<<< HEAD
 export const CommentWrapper = styled.div`
   width: 85%;
-=======
-export const Entire = styled.div`
-  padding: 0 250px;
-`;
-
-export const CommentWrapper = styled.div`
-  width: 1370px;
->>>>>>> laptop-work
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

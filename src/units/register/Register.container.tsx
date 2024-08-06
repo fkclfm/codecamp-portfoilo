@@ -1,4 +1,3 @@
-import { ChangeEvent, useState } from "react";
 import RegisterPageUI from "./Register.presenter";
 import { useMutation } from "@apollo/client";
 import { CREATE_USER } from "./Register.queries";
@@ -8,38 +7,30 @@ import {
 } from "../../commons/type/generated/types";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
+import { useForm } from "react-hook-form";
+import { IUseFormData } from "./Register.types";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { registerSchema } from "../../commons/schema/schema";
 
 export default function RegisterPage() {
   const router = useRouter();
-  const [inputs, setInputs] = useState({
-    email: "",
-    password: "",
-    name: "",
+  const { register, handleSubmit, formState } = useForm<IUseFormData>({
+    resolver: yupResolver(registerSchema),
+    mode: "onChange",
   });
   const [createUser] = useMutation<
     Pick<IMutation, "createUser">,
     IMutationCreateUserArgs
   >(CREATE_USER);
 
-  console.log(inputs);
-  const onChangeInputs = (e: ChangeEvent<HTMLInputElement>) => {
-    const target = e.currentTarget.id;
-    const Value = e.currentTarget.value;
-    setInputs((prev) => ({
-      ...prev,
-      [target]: Value,
-    }));
-    console.log(e.currentTarget.value);
-  };
-
-  const onClickRegister = async () => {
+  const onClickRegister = async (data: IUseFormData) => {
     try {
       const result = await createUser({
         variables: {
           createUserInput: {
-            email: inputs.email,
-            password: inputs.password,
-            name: inputs.name,
+            email: data.email,
+            password: data.password,
+            name: data.name,
           },
         },
       });
@@ -55,7 +46,9 @@ export default function RegisterPage() {
   return (
     <RegisterPageUI
       onClickRegister={onClickRegister}
-      onChangeInputs={onChangeInputs}
+      register={register}
+      handleSubmit={handleSubmit}
+      formState={formState}
     />
   );
 }

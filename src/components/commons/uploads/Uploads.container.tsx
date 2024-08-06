@@ -8,6 +8,7 @@ import { UPLOAD_FILE } from "./Uploads.queries";
 import UploadItemUI from "./Uploads.presenter";
 import { CheckUploadImage } from "./Uploads.CheckUploads";
 import { IUploadsProps } from "./Uploads.types";
+import { Modal } from "antd";
 
 export default function UploadItem(props: IUploadsProps) {
   const uploadRef = useRef<HTMLInputElement>(null);
@@ -22,16 +23,15 @@ export default function UploadItem(props: IUploadsProps) {
   };
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
     console.log(event.target.files);
+    const file = event.target.files?.[0];
     const isValid = CheckUploadImage(file);
     if (!isValid) return;
     try {
       const result = await uploadFile({ variables: { file } });
-      props.setImageUrl([result.data?.uploadFile.url ?? ""]);
+      props.onChangeImageUrls(result.data.uploadFile.url, props.index);
     } catch (error) {
-      alert("잘못되었습니다. 다시 시도해주세요.");
+      if (error instanceof Error) Modal.error({ content: error.message });
     }
   };
 

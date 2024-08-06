@@ -11,7 +11,7 @@ export const Wrapper = styled.div`
 
 export const LoginCard = styled.div`
   display: flex;
-  width: 65%;
+  width: 900px;
   height: 800px;
   flex-direction: column;
   align-items: center;
@@ -29,8 +29,8 @@ export const LoginHeader = styled.h1`
 export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 35px;
-  margin-top: 120px;
+  gap: 20px;
+  margin-top: 80px;
 `;
 
 export const RegisterBox = styled.div`
@@ -59,4 +59,9 @@ export const RegisterButton = styled.button`
   cursor: pointer;
   font-size: 15px;
   margin-top: 20px;
+`;
+
+export const Error = styled.div`
+  color: red;
+  font-size: 18px;
 `;

@@ -11,6 +11,8 @@ import {
 } from "../../../commons/type/generated/types";
 import { Modal } from "antd";
 import { Address } from "react-daum-postcode";
+import { useRecoilState } from "recoil";
+import { imageUrlsState } from "../../../commons/stores/GlobalState";
 
 export default function BoardWrite(props: IBoardWriteProps) {
   const router = useRouter();
@@ -36,7 +38,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
 
   const [contents, setContents] = useState("");
   const [youtubeUrl, setYoutubeUrl] = useState("");
-  const [ImageUrl, setImageUrl] = useState(["", "", ""]);
+  const [ImageUrls, setImageUrls] = useRecoilState(imageUrlsState);
 
   const [writerError, setWriterError] = useState("");
   const [pwError, setPwError] = useState("");
@@ -44,6 +46,13 @@ export default function BoardWrite(props: IBoardWriteProps) {
   const [contentsError, setContentsError] = useState("");
 
   console.log(props.data);
+
+  const onChangeImageUrls = (ImageUrl: string, index: number) => {
+    const newImageUrls = [...ImageUrls];
+    newImageUrls[index] = ImageUrl;
+    setImageUrls(newImageUrls);
+  };
+
   const handleModal = (event: MouseEvent<HTMLButtonElement>) => {
     setIsOpen((prev) => !prev);
   };
@@ -135,7 +144,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       youtubeUrl &&
       zipcode &&
       address &&
-      ImageUrl
+      ImageUrls
     ) {
       try {
         const result = await createBoard({
@@ -146,7 +155,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
               title,
               contents,
               youtubeUrl,
-              images: [...ImageUrl],
+              images: [...ImageUrls],
               boardAddress: {
                 zipcode,
                 address,
@@ -191,7 +200,7 @@ export default function BoardWrite(props: IBoardWriteProps) {
       if (addressDetail)
         updateBoardInput.boardAddress.addressDetail = addressDetail;
     }
-
+    if (ImageUrls) updateBoardInput.images = ImageUrls;
     try {
       await updateBoard({
         variables: {
@@ -231,8 +240,8 @@ export default function BoardWrite(props: IBoardWriteProps) {
       zipcode={zipcode}
       isOpen={isOpen}
       isTrue={isTrue}
-      ImageUrl={ImageUrl}
-      setImageUrl={setImageUrl}
+      ImageUrls={ImageUrls}
+      onChangeImageUrls={onChangeImageUrls}
       data={props.data}
       isEdit={props.isEdit}
     />

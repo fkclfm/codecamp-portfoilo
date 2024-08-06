@@ -14,8 +14,14 @@ export const Wrapper = styled.div`
   border: 1px solid gray;
   margin: 60px auto;
   padding: 50px 80px;
+`;
+
+export const MarketCard = styled.div`
+  display: flex;
+  flex-direction: column;
   gap: 15px;
 `;
+
 export const HeaderTitle = styled.div`
   display: flex;
   flex-direction: row;
@@ -74,12 +80,19 @@ export const Btn = styled.button`
   padding: 10px;
 `;
 
+export const ImageWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+`;
+
 export const RegisterBtn = styled.button`
   width: 178px;
   height: 52px;
   color: black;
-  background-color: #ffd600;
-  border: transparent;
+  font-weight: bold;
+  background-color: white;
+  border: 2px solid black;
   margin: 0 auto;
   font-family: "NotoSansKR";
 
@@ -87,5 +100,9 @@ export const RegisterBtn = styled.button`
     background-color: white;
     color: #d2d2d2;
     border: 1px solid #d2d2d2;
+  }
+
+  &:active {
+    opacity: 0.7;
   }
 `;

@@ -1,8 +1,9 @@
-import { ChangeEvent, Dispatch, RefObject, SetStateAction } from "react";
+import { ChangeEvent, RefObject } from "react";
 
 export interface IUploadsProps {
   ImageUrl: string;
-  setImageUrl: Dispatch<SetStateAction<string[]>>;
+  index: number;
+  onChangeImageUrls: (ImageUrl: string, index: number) => void;
 }
 
 export interface IUploadsUIProps {
