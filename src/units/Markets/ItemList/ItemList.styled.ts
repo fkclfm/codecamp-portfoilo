@@ -1,77 +1,108 @@
 import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
-  width: 1200px;
-  margin: 70px auto;
-`;
-
-export const TableTop = styled.div`
-  border-top: 2px solid gray;
-  margin-top: 20px;
-`;
-
-export const TableBottom = styled.div`
-  border-bottom: 2px solid gray;
-`;
-
-export const Row = styled.div`
   display: flex;
-  flex-direction: row;
-  height: 52px;
-  line-height: 52px;
-  border-bottom: 1px solid gray;
-
-  :hover {
-    color: blue;
-  }
-`;
-
-export const ColumnHeaderBasic = styled.div`
-  width: 10%;
-  text-align: center;
-`;
-
-export const ColumnHeaderTitle = styled.div`
-  width: 70%;
-  text-align: center;
-`;
-
-export const ColumnBasic = styled.div`
-  width: 10%;
-  text-align: center;
-`;
-
-export const ColumnTitle = styled.div`
-  width: 70%;
-  text-align: center;
-  cursor: pointer;
-
-  :hover {
-    color: blue;
-  }
-`;
-
-export const Footer = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: right;
-  padding-top: 50px;
-`;
-
-export const PencilIcon = styled.img``;
-
-export const Button = styled.button`
-  width: 171px;
-  height: 52px;
-  background-color: white;
-  border-radius: 15px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+  height: 700px;
+  flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  margin-top: 30px;
+  overflow: auto;
+`;
 
-  :hover {
-    background-color: #f5f2fc;
+export const ItemWrapper = styled.div`
+  width: 1200px;
+  height: 181px;
+  display: flex;
+  border-top: 1px solid #d2d2d2;
+  border-bottom: 1px solid #d2d2d2;
+  justify-content: space-between;
+  align-items: center;
+  opacity: 0.8;
+
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const ItemMarketBox = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+export const ItemPrice = styled.div`
+  display: flex;
+  flex-direction: row;
+  font-weight: 500;
+  font-size: 24px;
+`;
+
+export const ItemImage = styled.img`
+  width: 160px;
+  height: 160px;
+  margin-right: 20px;
+`;
+
+export const ItemContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 0;
+`;
+
+export const ItemCard = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+`;
+
+export const ItemName = styled.h1`
+  font-weight: 500;
+  font-size: 24px;
+`;
+
+export const ItemRemark = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  color: #4f4f4f;
+`;
+
+export const ItemHashTag = styled.div`
+  font-weight: 500;
+  font-size: 16px;
+  color: #bdbdbd;
+`;
+
+export const ItemTopBorder = styled.div`
+  border-top: 1px solid #d2d2d2;
+`;
+
+export const ItemSellerWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const ItemSellerImg = styled.img`
+  width: 24px;
+  height: 24px;
+`;
+
+export const ItemSeller = styled.span`
+  font-weight: 500px;
+  color: #4f4f4f;
+`;
+
+export const CreateItemBtn = styled.button`
+  width: 124px;
+  height: 50px;
+  background: white;
+  margin-top: 30px;
+  opacity: 0.8;
+  position: fixed;
+  right: 70px;
+  bottom: 30px;
+
+  &:hover {
+    opacity: 1;
   }
 `;

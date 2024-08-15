@@ -15,3 +15,8 @@ export const marketImageUrlsState = atom({
   key: "marketImageUrlsState", // 중고마켓 상품 등록용 이미지 URL 상태
   default: ["", ""], // 기본값: 빈 문자열 2개
 });
+
+export const isEditState = atom({
+  key: "isEditState",
+  default: false,
+});

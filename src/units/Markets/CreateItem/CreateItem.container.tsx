@@ -11,8 +11,12 @@ import { ICreateItemForm } from "./CreateItem.types";
 import { MarketSchema } from "../../../commons/schema/schema";
 import { marketImageUrlsState } from "../../../commons/stores/GlobalState";
 import { useRecoilState } from "recoil";
+import { FETCH_USED_ITEMS } from "../ItemList/ItemList.queries";
+import { Modal } from "antd";
+import { useRouter } from "next/router";
 
 export default function CreateItemPage() {
+  const router = useRouter();
   const { register, handleSubmit, formState } = useForm<ICreateItemForm>({
     resolver: yupResolver(MarketSchema),
     mode: "onChange",
@@ -22,17 +26,18 @@ export default function CreateItemPage() {
     Pick<IMutation, "createUseditem">,
     IMutationCreateUseditemArgs
   >(CREATE_USED_ITEM);
+
   const onClickSubmit = async (data: ICreateItemForm) => {
     try {
       const result = await createUseditem({
         variables: {
           createUseditemInput: {
-            contents: data.contents,
             name: data.name,
+            contents: data.contents,
             price: data.price,
-            remarks: data.remarks,
-            images: [...ImageUrls],
             tags: data.tags,
+            remarks: data.remarks,
+            //images: [...ImageUrls],
             // useditemAddress: {
             //   address: data.address,
             //   addressDetail: data.addressDetail,
@@ -42,7 +47,10 @@ export default function CreateItemPage() {
             // },
           },
         },
+        refetchQueries: [{ query: FETCH_USED_ITEMS }],
       });
+      Modal.success({ content: "상품 등록에 성공하였습니다." });
+      router.push("/market");
       console.log(result);
     } catch (error) {
       if (error instanceof Error) alert(error.message);

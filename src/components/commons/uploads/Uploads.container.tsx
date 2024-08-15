@@ -23,13 +23,16 @@ export default function UploadItem(props: IUploadsProps) {
   };
 
   const onChangeFile = async (event: ChangeEvent<HTMLInputElement>) => {
-    console.log(event.target.files);
     const file = event.target.files?.[0];
     const isValid = CheckUploadImage(file);
     if (!isValid) return;
     try {
       const result = await uploadFile({ variables: { file } });
-      props.onChangeImageUrls(result.data.uploadFile.url, props.index);
+      if (result.data) {
+        props.onChangeImageUrls(result.data.uploadFile.url, props.index);
+      } else {
+        Modal.error({ content: "파일 업로드에 실패했습니다." });
+      }
     } catch (error) {
       if (error instanceof Error) Modal.error({ content: error.message });
     }

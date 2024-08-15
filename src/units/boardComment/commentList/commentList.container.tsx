@@ -19,13 +19,13 @@ export default function CommentList() {
   });
 
   const onLoadMore = () => {
-    if (data === undefined) return;
+    if (!data) return;
     fetchMore({
       variables: {
         page: Math.ceil(data?.fetchBoardComments.length / 10) + 1,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (fetchMoreResult.fetchBoardComments === undefined) {
+        if (!fetchMoreResult.fetchBoardComments) {
           return {
             fetchBoardComments: [...prev.fetchBoardComments],
           };

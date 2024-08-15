@@ -15,12 +15,35 @@ import {
 } from "./CreateItem.styled";
 import { ICreateItemProps } from "./CreateItem.types";
 import { Error } from "../../register/Register.styled";
+import { useRecoilState } from "recoil";
+import { isEditState } from "../../../commons/stores/GlobalState";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
+import { useUpdateItem } from "../../../components/commons/hooks/mutation/useUpdateItem";
 
 export default function CreateItemPageUI(props: ICreateItemProps) {
+  const router = useRouter();
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
+  const { handleUpdateItem } = useUpdateItem();
+
+  useEffect(() => {
+    if (router.asPath === "/edit") {
+      setIsEdit(true);
+    } else {
+      setIsEdit(false);
+    }
+  }, [router.asPath]);
+
   return (
     <Wrapper>
-      <TitleText>음반 등록하기</TitleText>
-      <form onSubmit={props.handleSubmit(props.onClickSubmit)}>
+      <TitleText>{isEdit ? "음반 수정" : "음반 등록"}하기</TitleText>
+      <form
+        onSubmit={
+          isEdit
+            ? props.handleSubmit(handleUpdateItem)
+            : props.handleSubmit(props.onClickSubmit)
+        }
+      >
         <MarketCard>
           <HeaderTitle>
             <Title>
@@ -82,7 +105,9 @@ export default function CreateItemPageUI(props: ICreateItemProps) {
             <input type="radio" name="youtube" /> 사진 1
             <input type="radio" name="youtube" /> 사진 2
           </ContentBox>
-          <RegisterBtn>상품 등록하기</RegisterBtn>
+          <RegisterBtn>
+            {isEdit ? "상품 수정하기" : "상품 등록하기"}
+          </RegisterBtn>
         </MarketCard>
       </form>
     </Wrapper>

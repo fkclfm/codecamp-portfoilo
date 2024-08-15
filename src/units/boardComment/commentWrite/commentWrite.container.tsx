@@ -42,8 +42,8 @@ export default function CommentWrite(props: ICommentWriteProps) {
   }
 
   interface IUpdateBoardCommentInput {
-    contents: string;
-    rating: number;
+    contents?: string;
+    rating?: number;
   }
 
   const onClickUpdateComment = async (event: MouseEvent<HTMLButtonElement>) => {
