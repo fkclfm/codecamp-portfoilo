@@ -69,6 +69,27 @@ export const ItemRemarks = styled.span`
   text-align: left;
 `;
 
+export const ItemContents = styled.span`
+  font-size: 18px;
+  font-weight: 500;
+  text-align: left;
+  margin-bottom: 30px;
+`;
+
+export const ItemHashTagBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+`;
+
+export const ItemHashTags = styled.span`
+  font-size: 16px;
+  font-weight: 500;
+  text-align: left;
+  color: #bdbdbd;
+  margin-bottom: 30px;
+`;
+
 export const BtnBox = styled.div`
   display: flex;
   flex-direction: row;
@@ -144,4 +165,8 @@ export const ImageBox = styled.div`
 export const Image = styled.img`
   width: 450px;
   height: 450px;
+`;
+
+export const addressBox = styled.div`
+  height: 360px;
 `;

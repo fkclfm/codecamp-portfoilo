@@ -2,19 +2,11 @@ import Listitem from "./ItemList.presentItem";
 import { v4 as uuidv4 } from "uuid";
 import * as I from "./ItemList.styled";
 import { useMoveToPage } from "../../../components/commons/hooks/customs/useMoveToPage";
-import { useQuery } from "@apollo/client";
-import {
-  IQuery,
-  IQueryFetchUseditemsArgs,
-} from "../../../commons/type/generated/types";
-import { FETCH_USED_ITEMS } from "./ItemList.queries";
 import InfiniteScroll from "react-infinite-scroller";
+import { useFetchItems } from "../../../components/commons/hooks/query/useFetchItems";
 
 export default function ItemLists() {
-  const { data, fetchMore } = useQuery<
-    Pick<IQuery, "fetchUseditems">,
-    IQueryFetchUseditemsArgs
-  >(FETCH_USED_ITEMS);
+  const { data, fetchMore } = useFetchItems();
 
   const { onClickMoveToPage } = useMoveToPage();
 

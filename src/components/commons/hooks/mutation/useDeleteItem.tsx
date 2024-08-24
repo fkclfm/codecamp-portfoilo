@@ -5,7 +5,7 @@ import {
 } from "../../../../commons/type/generated/types";
 import { Modal } from "antd";
 import { useRouter } from "next/router";
-import { FETCH_USED_ITEMS } from "../../../../units/Markets/ItemList/ItemList.queries";
+import { FETCH_USED_ITEMS } from "../query/useFetchItems";
 
 const DELETE_USED_ITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {

@@ -18,7 +18,11 @@ export default function Listitem(props: IListItemProps) {
           <I.ItemCard>
             <I.ItemName>{props.el.name}</I.ItemName>
             <I.ItemRemark>{props.el.remarks}</I.ItemRemark>
-            <I.ItemHashTag>{props.el.tags}</I.ItemHashTag>
+            <I.ItemHashTagBox>
+              {props.el.tags.map((tags, index: number) => (
+                <I.ItemHashTag key={index}>{tags}</I.ItemHashTag>
+              ))}
+            </I.ItemHashTagBox>
           </I.ItemCard>
           <I.ItemSellerWrapper>
             <I.ItemSellerImg src="/images/ic_profile.png" />

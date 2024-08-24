@@ -5,6 +5,7 @@ import {
 } from "../../../../commons/type/generated/types";
 import { useRouter } from "next/router";
 import { Modal } from "antd";
+import { FETCH_USED_ITEMS } from "../query/useFetchItems";
 
 const UPDATE_USED_ITEM = gql`
   mutation updateUseditem(
@@ -40,9 +41,9 @@ export const useUpdateItem = () => {
     Pick<IMutation, "updateUseditem">,
     IMutationUpdateUseditemArgs
   >(UPDATE_USED_ITEM);
-  const handleUpdateItem = (data: IUpdateItemForm) => {
+  const handleUpdateItem = async (data: IUpdateItemForm) => {
     try {
-      const result = updateUseditem({
+      await updateUseditem({
         variables: {
           updateUseditemInput: {
             contents: data.contents,
@@ -52,11 +53,13 @@ export const useUpdateItem = () => {
             remarks: data.remarks,
             tags: data.tags,
           },
-          useditemId: String(router.query),
+          useditemId: String(router.query.productId),
         },
+        refetchQueries: [{ query: FETCH_USED_ITEMS }],
       });
       Modal.success({ content: "상품 수정에 성공하였습니다." });
-      console.log(result);
+      router.push("/market");
+      console.log(data);
     } catch (error) {
       Modal.error({ content: "상품 수정 권한이 없습니다." });
       if (error instanceof Error) console.log(error.message);

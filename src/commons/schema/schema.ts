@@ -55,9 +55,15 @@ export const MarketSchema = yup.object().shape({
   //   .of(yup.string().url("유효한 URL을 입력해주세요.")) // 이미지 배열 각 항목이 유효한 URL인지 검사
   //   .required("이미지 URL을 입력해주세요."), // 필수 입력 필드
   tags: yup
-    .string()
-    .matches(/^[#]/, "#을 반드시 붙혀주세요.")
-    .required("해시태그를 입력해주세요"), // 필수 입력 필드
+    .array()
+    .of(
+      yup
+        .string()
+        .matches(/^[#]/, "#을 반드시 붙혀주세요.")
+        .required("해시태그를 입력해주세요")
+    ) // 필수 입력 필드)
+    .required("해시태그는 필수 항목입니다.")
+    .min(1, "해시태그는 최소 1개 이상 입력해야 합니다."),
   // address: yup.string().required("주소를 입력해주세요."), // 필수 입력 필드
   // addressDetail: yup.string().required("상세 주소를 입력해주세요."), // 필수 입력 필드
   // zipcode: yup.string().required("우편번호를 입력해주세요."), // 필수 입력 필드

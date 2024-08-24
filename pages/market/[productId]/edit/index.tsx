@@ -1,4 +1,4 @@
-import CreateItemPage from "../../../../src/units/Markets/CreateItem/CreateItem.container";
+import CreateItemPage from "../../../../src/units/Markets/CreateItem/CreateItem.Index";
 
 export default function UpdateItem() {
   return <CreateItemPage />;

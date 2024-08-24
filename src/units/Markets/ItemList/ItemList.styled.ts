@@ -66,7 +66,13 @@ export const ItemRemark = styled.div`
   color: #4f4f4f;
 `;
 
-export const ItemHashTag = styled.div`
+export const ItemHashTagBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+`;
+
+export const ItemHashTag = styled.span`
   font-weight: 500;
   font-size: 16px;
   color: #bdbdbd;

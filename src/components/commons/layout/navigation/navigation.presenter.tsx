@@ -1,3 +1,4 @@
+import { v4 as uuid } from "uuid";
 import * as N from "./navigation.styled";
 
 const nav = [
@@ -13,7 +14,7 @@ export default function NavigationUI(props: any) {
       {nav.map((el, index) => (
         <>
           {index !== 0 && <N.NavHr />}
-          <N.NavMenu id={el.page} onClick={props.onClickMenu} key={el.page}>
+          <N.NavMenu id={el.page} onClick={props.onClickMenu} key={uuid()}>
             {el.name}
           </N.NavMenu>
         </>

@@ -20,9 +20,6 @@ export default function Pagination(props: IPaginationProps) {
 
   const currentPage = props.count ? searchPage : lastPage;
 
-  console.log(lastPage);
-  console.log(searchPage);
-
   const onClickPrev = (event: MouseEvent<HTMLImageElement>) => {
     if (startPage === 1) {
       alert("마지막 페이지입니다.");

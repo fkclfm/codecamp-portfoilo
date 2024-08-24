@@ -1,14 +1,13 @@
 import styled from "@emotion/styled";
 
-export const Entire = styled.div`
-  padding: 0 250px;
-`;
+export const Entire = styled.div``;
 
 export const Wrapper = styled.div`
   width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
   border: 1px solid gray;
   margin: 60px auto;
   padding: 50px 80px;
