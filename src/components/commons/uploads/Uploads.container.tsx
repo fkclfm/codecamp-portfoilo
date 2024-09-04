@@ -30,8 +30,8 @@ export default function UploadItem(props: IUploadsProps) {
       const result = await uploadFile({ variables: { file } });
       if (result.data) {
         const imageUrl = result.data.uploadFile.url;
-        props.onChangeImageUrls(result.data.uploadFile.url, props.index);
-        props.setValue(`images[${props.index}]`, imageUrl);
+        props.onChangeImageUrls(imageUrl, props.index);
+        props.setValue(`images.${props.index}`, imageUrl);
       } else {
         Modal.error({ content: "파일 업로드에 실패했습니다." });
       }

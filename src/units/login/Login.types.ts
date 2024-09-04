@@ -11,7 +11,6 @@ export interface ILoginForm {
 
 export interface ILoginUIProps {
   onClickLogin: (data: ILoginForm) => void;
-  onClickMoveRegister: () => void;
   register: UseFormRegister<ILoginForm>;
   handleSubmit: UseFormHandleSubmit<ILoginForm>;
   formState: UseFormStateReturn<ILoginForm>;

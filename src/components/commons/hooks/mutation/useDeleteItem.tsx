@@ -6,6 +6,7 @@ import {
 import { Modal } from "antd";
 import { useRouter } from "next/router";
 import { FETCH_USED_ITEMS } from "../query/useFetchItems";
+import { useFetchItem } from "../query/useFetchItem";
 
 const DELETE_USED_ITEM = gql`
   mutation deleteUseditem($useditemId: ID!) {
@@ -15,6 +16,7 @@ const DELETE_USED_ITEM = gql`
 
 export const useDeleteItem = () => {
   const router = useRouter();
+  const { data } = useFetchItem();
   const [deleteUseditem] = useMutation<
     Pick<IMutation, "deleteUseditem">,
     IMutationDeleteUseditemArgs
@@ -33,7 +35,12 @@ export const useDeleteItem = () => {
       if (error instanceof Error) console.log(error.message);
     }
   };
+  const onClickDeleteItem = () => {
+    if (data?.fetchUseditem._id) {
+      handleDeleteItem(data.fetchUseditem._id);
+    }
+  };
   return {
-    handleDeleteItem,
+    onClickDeleteItem,
   };
 };

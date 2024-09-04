@@ -9,45 +9,47 @@ export const Wrapper = styled.div`
   padding: 0 200px;
 `;
 
-export const LoginCard = styled.div`
+export const RegisterCard = styled.div`
   display: flex;
   width: 900px;
   height: 800px;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  border-radius: 20px;
   gap: 30px;
 `;
 
-export const LoginHeader = styled.h1`
-  text-align: center;
+export const RegisterHeader = styled.h1`
   font-size: 40px;
   margin-top: 4rem;
 `;
 
-export const LoginWrapper = styled.div`
+export const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
-  margin-top: 80px;
+  margin-top: 70px;
 `;
 
 export const RegisterBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 20px;
-  gap: 11px;
+  gap: 20px;
 `;
 
-export const LoginInput = styled.input`
-  width: 25rem;
-  font-size: 20px;
+export const RegisterSpan = styled.span`
+  font-size: 19px;
 `;
-
-export const PasswordInput = styled.input`
-  width: 24rem;
+export const Input = styled.input`
+  width: 30rem;
   font-size: 20px;
+  padding: 5px;
+  border: transparent;
+  border-bottom: 1px solid #d3d3d3;
+  transition: 0.3s;
+  &:focus {
+    border-color: black;
+  }
 `;
 
 export const RegisterButton = styled.button`

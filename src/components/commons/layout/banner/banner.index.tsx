@@ -1,14 +1,8 @@
 import styled from "@emotion/styled";
 import Slider from "react-slick";
+import * as B from "./banner.styled";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
-const Wrapper = styled.div`
-  width: 100%;
-  height: 400px;
-  position: relative; /* 상대적 위치를 설정 */
-  overflow: hidden;
-`;
 
 const StyledSlider = styled(Slider)`
   .slick-dots {
@@ -22,11 +16,11 @@ const StyledSlider = styled(Slider)`
   }
 
   .slick-slide img {
-    max-width: 100%; /* 슬라이더 너비에 맞춤 */
-    max-height: 400px; /* 슬라이더 높이에 맞춤 */
+    width: 100%;
+    height: 700px;
+    object-fit: cover;
     margin: auto;
     display: block;
-    background: transparent;
   }
 `;
 
@@ -36,23 +30,26 @@ export default function Banner() {
     dots: true,
     infinite: true,
     speed: 500,
+    autoplay: true,
+    autoplaySpeed: 2000,
     slidesToShow: 1,
     slidesToScroll: 1,
   };
 
   return (
-    <Wrapper>
+    <B.Wrapper>
       <StyledSlider {...settings}>
         <div>
-          <img src="/images/lp.png" alt="slick" />
+          <img src="/images/banner01.jpg" alt="slick" />
+          <B.SliderTitle>양홍원의 화려한 복귀</B.SliderTitle>
         </div>
         <div>
-          <img src="/images/lp.png" alt="slick" />
+          <img src="/images/banner02.jpg" alt="slick" />
         </div>
         <div>
-          <img src="/images/lp.png" alt="slick" />
+          <img src="/images/banner03.jpg" alt="slick" />
         </div>
       </StyledSlider>
-    </Wrapper>
+    </B.Wrapper>
   );
 }

@@ -5,59 +5,15 @@ import { useMoveToPage } from "../../../components/commons/hooks/customs/useMove
 import { useDeleteItem } from "../../../components/commons/hooks/mutation/useDeleteItem";
 import { useFetchItem } from "../../../components/commons/hooks/query/useFetchItem";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
-
-declare const window: typeof globalThis & {
-  kakao: any;
-};
+import { useKakaoMaps } from "../../../components/commons/hooks/customs/useKakaoMaps";
 
 export default function ItemDetail() {
   const router = useRouter();
   const { data } = useFetchItem();
-  const { handleDeleteItem } = useDeleteItem();
+  const { onClickDeleteItem } = useDeleteItem();
   const { onClickMoveToPage } = useMoveToPage();
-
-  const onClickDeleteItem = () => {
-    if (data?.fetchUseditem._id) {
-      handleDeleteItem(data.fetchUseditem._id);
-    }
-  };
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src =
-      "//dapi.kakao.com/v2/maps/sdk.js?appkey=df7890d83008dd8065a5509bd693fd7e&autoload=false";
-    document.head.appendChild(script);
-
-    script.onload = () => {
-      window.kakao.maps.load(function () {
-        const container = document.getElementById("map"); //지도를 담을 영역의 DOM 레퍼런스
-        const options = {
-          // 지도를 생성할 때 필요한 기본 옵션
-          center: new window.kakao.maps.LatLng(
-            data?.fetchUseditem.useditemAddress?.lat,
-            data?.fetchUseditem.useditemAddress?.lng
-          ), // 지도의 중심좌표.
-          level: 3, // 지도의 레벨(확대, 축소 정도)
-        };
-        const map = new window.kakao.maps.Map(container, options); // 지도 생성 및 객체 리턴4
-
-        // 마커가 표시될 위치입니다
-        const markerPosition = new window.kakao.maps.LatLng(
-          data?.fetchUseditem.useditemAddress?.lat,
-          data?.fetchUseditem.useditemAddress?.lng
-        );
-        // 마커를 생성합니다
-        const marker = new window.kakao.maps.Marker({
-          position: markerPosition,
-        });
-        // 마커가 지도 위에 표시되도록 설정합니다
-        marker.setMap(map);
-
-        //const iwContent = '<div style="padding:5px;"></div>';
-      });
-    };
-  }, []);
+  const { useKakaoDetail } = useKakaoMaps();
+  useKakaoDetail();
   console.log(data);
   return (
     <W.Entire>
@@ -93,14 +49,18 @@ export default function ItemDetail() {
             src={`https://storage.googleapis.com/${data?.fetchUseditem.images[0]}`}
           />
         </W.ImageBox>
-        <W.ItemContents>{data?.fetchUseditem.contents}</W.ItemContents>
+        <W.ItemContents
+          dangerouslySetInnerHTML={{
+            __html: String(data?.fetchUseditem.contents),
+          }}
+        ></W.ItemContents>
         <W.ItemHashTagBox>
           {data?.fetchUseditem.tags?.map((tags, index) => (
             <W.ItemHashTags key={index}>{tags}</W.ItemHashTags>
           ))}
         </W.ItemHashTagBox>
         <W.HorizonLine />
-        {data?.fetchUseditem.useditemAddress ? (
+        {data?.fetchUseditem.useditemAddress?.lat ? (
           <W.addressBox id="map"></W.addressBox>
         ) : (
           <span>거래 주소가 기재되지 않았습니다.</span>

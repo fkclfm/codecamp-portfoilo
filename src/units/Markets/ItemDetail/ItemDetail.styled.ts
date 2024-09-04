@@ -168,5 +168,6 @@ export const Image = styled.img`
 `;
 
 export const addressBox = styled.div`
+  width: 100%;
   height: 360px;
 `;

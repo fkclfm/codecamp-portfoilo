@@ -32,7 +32,7 @@ export const loginSchema = yup.object({
     .max(12, "비밀번호는 최대 12자리까지 입력할 수 있습니다.")
     .matches(
       /^(?=.*[a-zA-Z])(?=.*[1-9])(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*]{4,12}$/,
-      "비밀번호는 최소 대소문자, 숫자, 특수문자가 하나씩 반드시 들어가야합니다."
+      "비밀번호는 대소문자, 숫자, 특수문자가 반드시 들어가야합니다."
     )
     .required("비밀번호를 입력해주세요."),
 });
@@ -50,10 +50,6 @@ export const MarketSchema = yup.object().shape({
     .required("가격을 입력해주세요.") // 필수 입력 필드
     .positive("가격은 양수여야 합니다."), // 양수여야 함
   remarks: yup.string().required("설명을 입력해주세요."), // 필수 입력 필드
-  // images: yup
-  //   .array()
-  //   .of(yup.string().url("유효한 URL을 입력해주세요.")) // 이미지 배열 각 항목이 유효한 URL인지 검사
-  //   .required("이미지 URL을 입력해주세요."), // 필수 입력 필드
   tags: yup
     .array()
     .of(
@@ -64,19 +60,18 @@ export const MarketSchema = yup.object().shape({
     ) // 필수 입력 필드)
     .required("해시태그는 필수 항목입니다.")
     .min(1, "해시태그는 최소 1개 이상 입력해야 합니다."),
-  // address: yup.string().required("주소를 입력해주세요."), // 필수 입력 필드
-  // addressDetail: yup.string().required("상세 주소를 입력해주세요."), // 필수 입력 필드
-  // zipcode: yup.string().required("우편번호를 입력해주세요."), // 필수 입력 필드
-  // lat: yup
-  //   .number()
-  //   .typeError("위도는 숫자여야 합니다.") // 숫자형이어야 한다는 에러 메시지
-  //   .required("위도를 입력해주세요.") // 필수 입력 필드
-  //   .min(-90, "위도는 -90 이상이어야 합니다.") // 최소 위도 값
-  //   .max(90, "위도는 90 이하이어야 합니다."), // 최대 위도 값
-  // lng: yup
-  //   .number()
-  //   .typeError("경도는 숫자여야 합니다.") // 숫자형이어야 한다는 에러 메시지
-  //   .required("경도를 입력해주세요.") // 필수 입력 필드
-  //   .min(-180, "경도는 -180 이상이어야 합니다.") // 최소 경도 값
-  //   .max(180, "경도는 180 이하이어야 합니다."), // 최대 경도 값
+  address: yup.string().required("주소를 입력해주세요."), // 필수 입력 필드
+  addressDetail: yup.string().required("상세 주소를 입력해주세요."), // 필수 입력 필드
+  lat: yup
+    .number()
+    .typeError("위도는 숫자여야 합니다.") // 숫자형이어야 한다는 에러 메시지
+    .required("위도를 입력해주세요.") // 필수 입력 필드
+    .min(-90, "위도는 -90 이상이어야 합니다.") // 최소 위도 값
+    .max(90, "위도는 90 이하이어야 합니다."), // 최대 위도 값
+  lng: yup
+    .number()
+    .typeError("경도는 숫자여야 합니다.") // 숫자형이어야 한다는 에러 메시지
+    .required("경도를 입력해주세요.") // 필수 입력 필드
+    .min(-180, "경도는 -180 이상이어야 합니다.") // 최소 경도 값
+    .max(180, "경도는 180 이하이어야 합니다."), // 최대 경도 값
 });

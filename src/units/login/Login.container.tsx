@@ -26,10 +26,6 @@ export default function LoginPage() {
     IMutationLoginUserArgs
   >(LOGIN_USER);
 
-  const onClickMoveRegister = () => {
-    router.push("/register");
-  };
-
   const onClickLogin = async (data: ILoginForm) => {
     try {
       const result = await loginUser({
@@ -39,7 +35,6 @@ export default function LoginPage() {
         },
       });
       const accessTokens = result.data?.loginUser.accessToken;
-      console.log(result.data);
       if (accessTokens) {
         setAccessToken(accessTokens);
         localStorage.setItem("accessToken", accessTokens);
@@ -57,7 +52,6 @@ export default function LoginPage() {
   return (
     <LoginPageUI
       onClickLogin={onClickLogin}
-      onClickMoveRegister={onClickMoveRegister}
       register={register}
       handleSubmit={handleSubmit}
       formState={formState}

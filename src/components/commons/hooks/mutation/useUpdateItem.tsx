@@ -47,7 +47,7 @@ export const useUpdateItem = () => {
         variables: {
           updateUseditemInput: {
             contents: data.contents,
-            //images,
+            images: data.images,
             name: data.name,
             price: data.price,
             remarks: data.remarks,

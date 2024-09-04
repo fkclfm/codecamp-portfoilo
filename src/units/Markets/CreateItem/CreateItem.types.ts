@@ -5,9 +5,9 @@ export interface ICreateItemForm {
   remarks: string;
   images: string[];
   tags: string[];
-  // address: string;
-  // addressDetail: string;
-  // zipcode: string;
-  // lat: number;
-  // lng: number;
+  address: string;
+  addressDetail: string;
+  zipcode: string;
+  lat: number;
+  lng: number;
 }

@@ -16,6 +16,13 @@ export const CREATE_USED_ITEM = gql`
       contents
       price
       tags
+      useditemAddress {
+        address
+        addressDetail
+        zipcode
+        lat
+        lng
+      }
     }
   }
 `;
@@ -26,11 +33,11 @@ export interface ICreateItemForm {
   remarks: string;
   images: string[];
   tags: string[];
-  // address: string;
-  // addressDetail: string;
-  // zipcode: string;
-  // lat: number;
-  // lng: number;
+  address: string;
+  addressDetail: string;
+  zipcode: string;
+  lat: number;
+  lng: number;
 }
 
 export const useCreateitem = () => {
@@ -51,13 +58,13 @@ export const useCreateitem = () => {
             tags: data.tags,
             remarks: data.remarks,
             images: data.images,
-            // useditemAddress: {
-            //   address: data.address,
-            //   addressDetail: data.addressDetail,
-            //   zipcode: data.zipcode,
-            //   lat: data.lat,
-            //   lng: data.lng,
-            // },
+            useditemAddress: {
+              address: data.address,
+              addressDetail: data.addressDetail,
+              zipcode: data.zipcode,
+              lat: data.lat,
+              lng: data.lng,
+            },
           },
         },
         refetchQueries: [{ query: FETCH_USED_ITEMS }],

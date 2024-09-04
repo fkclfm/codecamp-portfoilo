@@ -11,4 +11,17 @@ export const globalStyles = css`
     font-family: "Pretendard";
     src: url("/fonts/Pretendard-Medium.woff");
   }
+
+  input {
+    outline: none;
+  }
+
+  textarea {
+    outline: none;
+  }
+  a {
+    border: transparent;
+    cursor: pointer;
+    text-decoration: none;
+  }
 `;

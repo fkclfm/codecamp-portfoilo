@@ -15,8 +15,6 @@ export const LoginCard = styled.div`
   height: 800px;
   flex-direction: column;
   align-items: center;
-  border: 2px solid black;
-  border-radius: 20px;
   gap: 30px;
 `;
 
@@ -30,26 +28,31 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 35px;
-  margin-top: 120px;
+  margin-top: 100px;
+`;
+export const LoginSpan = styled.span`
+  font-size: 19px;
 `;
 
 export const LoginBox = styled.div`
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   font-size: 20px;
-  gap: 11px;
+  gap: 25px;
 `;
 
-export const LoginInput = styled.input`
-  width: 25rem;
+export const Input = styled.input`
+  width: 30rem;
   font-size: 20px;
-`;
+  border: transparent;
+  border-bottom: 1px solid #d3d3d3;
+  transition: 0.3s;
+  padding: 5px;
 
-export const PasswordInput = styled.input`
-  width: 24rem;
-  font-size: 20px;
+  &:focus {
+    border-color: black;
+  }
 `;
-
 export const LoginButton = styled.button`
   width: 500px;
   height: 50px;
@@ -66,6 +69,7 @@ export const RegisterButton = styled.button`
   background: white;
   color: black;
   border-radius: 10px;
+  border: 1px solid black;
   cursor: pointer;
   font-size: 15px;
 `;

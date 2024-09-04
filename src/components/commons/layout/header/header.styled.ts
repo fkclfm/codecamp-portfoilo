@@ -3,40 +3,43 @@ import styled from "@emotion/styled";
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
-  align-items: center;
-  height: 100px;
-`;
-
-export const HeaderImg = styled.img`
-  cursor: pointer;
-  width: 500px;
-  height: 80px;
-  object-fit: contain;
-`;
-
-export const HeaderMenu = styled.div`
-  display: flex;
-  flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 14px;
+  height: 100px;
+  padding: 0 100px;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  height: 70px;
+  gap: 200px;
+`;
+
+export const HeaderBar = styled.h3`
+  cursor: pointer;
+  font-weight: 500;
+  &:hover {
+    opacity: 0.8;
+  }
+`;
+
+export const Title = styled.a`
+  font-weight: 700;
+  font-size: 30px;
+  color: black;
 `;
 
 export const LoginBtn = styled.a`
   width: 60px;
   height: 24px;
-  background-color: white;
   font-weight: 700;
   font-size: 16px;
-  border: transparent;
-  cursor: pointer;
-  text-decoration: none;
   color: black;
-  opacity: 0.8;
 
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 `;
 
@@ -46,38 +49,34 @@ export const LoginBox = styled.div`
   gap: 30px;
 `;
 
-export const NickName = styled.span`
+export const UsernameBox = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+export const Username = styled.span`
   font-size: 16px;
-  color: #fe4e03;
-  font-weight: bold;
+  font-weight: 600;
 `;
 
 export const LogoutBtn = styled.a`
-  background: #fe4e03;
-  padding: 10px 16px 10px 16px;
-  border-radius: 10px;
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
-  border: transparent;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-  opacity: 0.8;
+  &:hover {
+    opacity: 0.8;
+  }
 `;
 
 export const RegisterBtn = styled.a`
-  background: #fe4e03;
-  padding: 10px 16px 10px 16px;
-  border-radius: 10px;
-  font-weight: 500;
+  width: 60px;
+  height: 24px;
+  background-color: white;
+  font-weight: 700;
   font-size: 16px;
-  border: transparent;
-  cursor: pointer;
-  text-decoration: none;
-  color: white;
-  opacity: 0.8;
+  color: black;
 
   &:hover {
-    opacity: 1;
+    opacity: 0.8;
   }
 `;
