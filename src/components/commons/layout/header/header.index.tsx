@@ -13,7 +13,7 @@ import {
 import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGED_IN } from "./header.queries";
 import { IQuery } from "../../../../commons/type/generated/types";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/stores/GlobalState";
 import { useRouter } from "next/router";
@@ -21,6 +21,7 @@ import { useMoveToPage } from "../../hooks/customs/useMoveToPage";
 
 export default function Header() {
   const router = useRouter();
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const { onClickMoveToPage } = useMoveToPage();
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } =
@@ -31,7 +32,13 @@ export default function Header() {
     if (result) {
       setAccessToken(result);
     }
-  }, []);
+    // 다크 모드 활성화 여부
+    if (router.asPath === "/") {
+      setIsDarkMode(true);
+    } else {
+      setIsDarkMode(false);
+    }
+  }, [router.asPath]);
 
   const onClickLogout = () => {
     localStorage.removeItem("accessToken");
@@ -47,8 +54,10 @@ export default function Header() {
   ];
 
   return (
-    <Wrapper>
-      <Title href="/main">HIPLP</Title>
+    <Wrapper isDarkMode={isDarkMode}>
+      <Title href="/main" isDarkMode={isDarkMode}>
+        HIPLP
+      </Title>
       <Container>
         {header.map((el, index) => (
           <>
@@ -59,7 +68,7 @@ export default function Header() {
         ))}
       </Container>
       {accessToken !== "" ? (
-        <LoginBox>
+        <LoginBox isDarkMode={isDarkMode}>
           <UsernameBox>
             <Username>{data?.fetchUserLoggedIn.name}</Username>
             <span style={{ fontWeight: "700" }}>님</span>
@@ -67,9 +76,13 @@ export default function Header() {
           <LogoutBtn onClick={onClickLogout}>로그아웃</LogoutBtn>
         </LoginBox>
       ) : (
-        <LoginBox>
-          <LoginBtn href="/login">로그인</LoginBtn>
-          <RegisterBtn href="register">회원가입</RegisterBtn>
+        <LoginBox isDarkMode={isDarkMode}>
+          <LoginBtn href="/login" isDarkMode={isDarkMode}>
+            로그인
+          </LoginBtn>
+          <RegisterBtn href="register" isDarkMode={isDarkMode}>
+            회원가입
+          </RegisterBtn>
         </LoginBox>
       )}
     </Wrapper>

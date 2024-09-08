@@ -11,7 +11,7 @@ export default function Layout(props: ILayoutProps) {
   console.log(router);
   return (
     <>
-      {router.asPath === "/main" || router.asPath === "/" ? (
+      {router.asPath === "/main" ? (
         <div>
           <Header />
           <Banner />

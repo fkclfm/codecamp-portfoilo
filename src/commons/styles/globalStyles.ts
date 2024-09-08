@@ -5,6 +5,7 @@ export const globalStyles = css`
     box-sizing: border-box;
     margin: 0;
     font-family: "Pretendard";
+    font-size: 16px;
   }
 
   @font-face {
