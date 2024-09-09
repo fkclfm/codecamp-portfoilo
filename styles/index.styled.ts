@@ -2,7 +2,6 @@ import styled from "@emotion/styled";
 
 export const FirstLanding = styled.div`
   height: 100vh;
-  background-color: black;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,41 +9,55 @@ export const FirstLanding = styled.div`
 `;
 
 export const LandingHeader = styled.h1`
-  font-size: 50px;
+  font-size: 65px;
   color: white;
 `;
 
 export const IntroduceBox = styled.div`
   height: 100vh;
-  background-color: white;
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-evenly;
-  border: 1px solid red;
+  justify-content: center;
+  gap: 100px;
 `;
 
+export const TitleBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const TitleImage = styled.img`
+  width: 300px;
+  height: 300px;
+`;
 export const Title = styled.h1`
-  font-size: 40px;
+  font-size: 70px;
   color: black;
 `;
 
-export const IntroduceContentBox = styled.div`
+export const Service = styled.div`
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 30em;
+`;
+
+export const ServiceTextBox = styled.div`
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: center;
-  gap: 20px;
+`;
+export const ServiceH1 = styled.h1`
+  font-size: 70px;
 `;
 
-export const Contents = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-`;
-
-export const IntroduceContent = styled.span`
-  font-size: 22px;
-  color: #78828f;
+export const ServiceImage = styled.img`
+  width: 500px;
+  height: 500px;
 `;

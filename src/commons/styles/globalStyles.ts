@@ -8,6 +8,12 @@ export const globalStyles = css`
     font-size: 16px;
   }
 
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    max-width: 100vw;
+  }
+
   @font-face {
     font-family: "Pretendard";
     src: url("/fonts/Pretendard-Medium.woff");
@@ -24,5 +30,6 @@ export const globalStyles = css`
     border: transparent;
     cursor: pointer;
     text-decoration: none;
+    color: black;
   }
 `;

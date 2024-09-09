@@ -16,6 +16,7 @@ export const Wrapper = styled.div`
   text-align: center;
   border-radius: 20px;
 `;
+
 export const Header = styled.div`
   display: flex;
   flex-direction: row;

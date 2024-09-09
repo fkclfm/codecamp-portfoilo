@@ -29,7 +29,7 @@ const StyledSlider = styled(Slider)`
 
   .slick-slide img {
     width: 100%;
-    height: 700px;
+    height: 50em;
     object-fit: cover;
     margin: auto;
     display: block;
@@ -45,14 +45,13 @@ export default function Banner() {
         className={className}
         style={{
           ...style,
-          display: "block",
+          display: "black",
           left: "50px",
           zIndex: 10,
+          background: "transparent",
         }}
         onClick={onClick}
-      >
-        <span>&lt</span>
-      </div>
+      ></div>
     );
   };
 
@@ -69,9 +68,7 @@ export default function Banner() {
           zIndex: 10,
         }}
         onClick={onClick}
-      >
-        <span>&gt</span>
-      </div>
+      ></div>
     );
   };
 

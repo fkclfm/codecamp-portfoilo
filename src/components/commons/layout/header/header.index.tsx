@@ -1,3 +1,4 @@
+import { useScroll, useTransform } from "framer-motion";
 import {
   Wrapper,
   LoginBtn,
@@ -13,7 +14,7 @@ import {
 import { useQuery } from "@apollo/client";
 import { FETCH_USER_LOGGED_IN } from "./header.queries";
 import { IQuery } from "../../../../commons/type/generated/types";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/stores/GlobalState";
 import { useRouter } from "next/router";
@@ -21,7 +22,19 @@ import { useMoveToPage } from "../../hooks/customs/useMoveToPage";
 
 export default function Header() {
   const router = useRouter();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { scrollYProgress } = useScroll();
+  const isHomePage = router.asPath === "/";
+  const backgroundColor = useTransform(
+    scrollYProgress,
+    [0.17, 0.25],
+    ["rgba(0, 0, 0, 1)", "rgba(255, 255, 255, 1)"]
+  );
+  const textColor = useTransform(
+    scrollYProgress,
+    [0.17, 0.25],
+    ["rgba(255, 255, 255, 1)", "rgba(0, 0, 0, 1)"]
+  );
+
   const { onClickMoveToPage } = useMoveToPage();
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
   const { data } =
@@ -32,13 +45,7 @@ export default function Header() {
     if (result) {
       setAccessToken(result);
     }
-    // 다크 모드 활성화 여부
-    if (router.asPath === "/") {
-      setIsDarkMode(true);
-    } else {
-      setIsDarkMode(false);
-    }
-  }, [router.asPath]);
+  }, [setAccessToken]);
 
   const onClickLogout = () => {
     localStorage.removeItem("accessToken");
@@ -47,40 +54,51 @@ export default function Header() {
   };
 
   const header = [
-    { page: "/firebase", name: "FIREBASE" },
+    { page: "/", name: "INTRODUCE" },
     { page: "/boards", name: "BOARD" },
     { page: "/market/", name: "STORE" },
     { page: "/mypage", name: "MYPAGE" },
   ];
 
+  const backgroundColorStyle = isHomePage
+    ? { backgroundColor }
+    : { backgroundColor: "white" };
+  const textColorStyle = isHomePage ? { color: textColor } : { color: "black" };
+
   return (
-    <Wrapper isDarkMode={isDarkMode}>
-      <Title href="/main" isDarkMode={isDarkMode}>
+    <Wrapper style={backgroundColorStyle} isFixed={isHomePage}>
+      <Title style={textColorStyle} href="/main">
         HIPLP
       </Title>
       <Container>
         {header.map((el, index) => (
-          <>
-            <HeaderBar onClick={onClickMoveToPage(`${el.page}`)} key={index}>
-              {el.name}
-            </HeaderBar>
-          </>
+          <HeaderBar
+            key={index}
+            onClick={onClickMoveToPage(el.page)}
+            style={textColorStyle}
+          >
+            {el.name}
+          </HeaderBar>
         ))}
       </Container>
       {accessToken !== "" ? (
-        <LoginBox isDarkMode={isDarkMode}>
+        <LoginBox>
           <UsernameBox>
-            <Username>{data?.fetchUserLoggedIn.name}</Username>
-            <span style={{ fontWeight: "700" }}>님</span>
+            <Username style={textColorStyle}>
+              {data?.fetchUserLoggedIn.name}
+            </Username>
+            <Username style={textColorStyle}>님</Username>
           </UsernameBox>
-          <LogoutBtn onClick={onClickLogout}>로그아웃</LogoutBtn>
+          <LogoutBtn onClick={onClickLogout} style={textColorStyle}>
+            로그아웃
+          </LogoutBtn>
         </LoginBox>
       ) : (
-        <LoginBox isDarkMode={isDarkMode}>
-          <LoginBtn href="/login" isDarkMode={isDarkMode}>
+        <LoginBox>
+          <LoginBtn href="/login" style={textColorStyle}>
             로그인
           </LoginBtn>
-          <RegisterBtn href="register" isDarkMode={isDarkMode}>
+          <RegisterBtn href="/register" style={textColorStyle}>
             회원가입
           </RegisterBtn>
         </LoginBox>
