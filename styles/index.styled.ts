@@ -11,6 +11,10 @@ export const FirstLanding = styled.div`
 export const LandingHeader = styled.h1`
   font-size: 65px;
   color: white;
+
+  @media screen and (min-width: 1300px) {
+    font-size: 55px;
+  }
 `;
 
 export const IntroduceBox = styled.div`
@@ -26,6 +30,7 @@ export const TitleBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin-top: 40px;
 `;
 
 export const TitleImage = styled.img`
@@ -35,6 +40,9 @@ export const TitleImage = styled.img`
 export const Title = styled.h1`
   font-size: 70px;
   color: black;
+  @media screen and (min-width: 1300px) {
+    font-size: 60px;
+  }
 `;
 
 export const Service = styled.div`
@@ -44,10 +52,13 @@ export const Service = styled.div`
   align-items: center;
   justify-content: center;
   gap: 30em;
+
+  @media screen and (min-width: 1300px) {
+    gap: 20em;
+  }
 `;
 
 export const ServiceTextBox = styled.div`
-  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -55,9 +66,18 @@ export const ServiceTextBox = styled.div`
 `;
 export const ServiceH1 = styled.h1`
   font-size: 70px;
+
+  @media screen and (min-width: 1300px) {
+    font-size: 50px;
+  }
 `;
 
 export const ServiceImage = styled.img`
   width: 500px;
   height: 500px;
+
+  @media screen and (min-width: 1300px) {
+    width: 400px;
+    height: 400px;
+  }
 `;

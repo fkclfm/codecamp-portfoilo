@@ -15,8 +15,8 @@ export const Wrapper = styled(motion.div)<{ isFixed?: boolean }>`
   z-index: 10;
   transition: 0.15s;
 
-  @media only screen and (max-width: 1024px) {
-    padding: 0 50px;
+  @media only screen and (min-width: 1300px) {
+    padding: 0 70px;
   }
 `;
 
@@ -31,6 +31,10 @@ export const Container = styled.div`
   align-items: center;
   height: 70px;
   gap: 200px;
+
+  @media only screen and (min-width: 1300px) {
+    gap: 150px;
+  }
 `;
 
 export const HeaderBar = styled(motion.h3)`
