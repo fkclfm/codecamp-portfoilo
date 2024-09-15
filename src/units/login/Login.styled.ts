@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 
 export const Wrapper = styled.div`
   display: flex;
-  height: 1100px;
+  height: 950px;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -28,7 +28,7 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 35px;
-  margin-top: 100px;
+  margin-top: 80px;
 `;
 export const LoginSpan = styled.span`
   font-size: 19px;

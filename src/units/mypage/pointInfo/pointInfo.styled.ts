@@ -29,11 +29,6 @@ export const MyPageTextH2 = styled.h2`
   line-height: 29px;
 `;
 
-export const MyPage = styled.a`
-  font-size: 24px;
-  line-height: 29px;
-`;
-
 export const MyPagePointBox = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,7 +39,7 @@ export const PointHeader = styled.strong`
   font-size: 18px;
 `;
 
-export const PointLink = styled.a`
+export const PointSpan = styled.a`
   font-size: 15px;
   color: rgba(34, 34, 34, 0.5);
 `;

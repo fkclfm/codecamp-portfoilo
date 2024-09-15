@@ -66,13 +66,9 @@ export const ProfileBox = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   padding: 24px;
   gap: 0.8rem;
-`;
-
-export const ProfileImage = styled.img`
-  width: 60px;
-  height: 60px;
 `;
 
 export const UserBox = styled.div`
@@ -80,8 +76,8 @@ export const UserBox = styled.div`
   flex-direction: column;
 `;
 
-export const Username = styled.strong`
-  font-size: 18px;
+export const Complete = styled.strong`
+  font-size: 22px;
 `;
 
 export const email = styled.p`

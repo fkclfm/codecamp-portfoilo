@@ -11,14 +11,12 @@ import {
   Username,
   UsernameBox,
 } from "./header.styled";
-import { useQuery } from "@apollo/client";
-import { FETCH_USER_LOGGED_IN } from "./header.queries";
-import { IQuery } from "../../../../commons/type/generated/types";
 import { useEffect } from "react";
 import { useRecoilState } from "recoil";
 import { accessTokenState } from "../../../../commons/stores/GlobalState";
 import { useRouter } from "next/router";
 import { useMoveToPage } from "../../hooks/customs/useMoveToPage";
+import { useFetchUserLoggedIn } from "../../hooks/query/useFetchUserLoggedIn";
 
 export default function Header() {
   const router = useRouter();
@@ -37,8 +35,7 @@ export default function Header() {
 
   const { onClickMoveToPage } = useMoveToPage();
   const [accessToken, setAccessToken] = useRecoilState(accessTokenState);
-  const { data } =
-    useQuery<Pick<IQuery, "fetchUserLoggedIn">>(FETCH_USER_LOGGED_IN);
+  const { data } = useFetchUserLoggedIn();
 
   useEffect(() => {
     const result = localStorage.getItem("accessToken");

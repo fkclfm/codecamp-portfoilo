@@ -44,6 +44,11 @@ export const PointHeader = styled.strong`
   font-size: 18px;
 `;
 
+export const PointCheckLink = styled.a`
+  font-size: 15px;
+  font-weight: bold;
+`;
+
 export const PointLink = styled.a`
   font-size: 15px;
   color: rgba(34, 34, 34, 0.5);
@@ -55,10 +60,15 @@ export const MyPageInfoBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
+  gap: 2rem;
 `;
 
-export const ProfileBox = styled.div`
+export const PointH3 = styled.h3`
+  font-size: 24px;
+`;
+
+export const PointProfileBox = styled.div`
   width: 100%;
   height: 110px;
   border: 1px solid #d2d2d2;
@@ -68,6 +78,7 @@ export const ProfileBox = styled.div`
   align-items: center;
   padding: 24px;
   gap: 0.8rem;
+  background-color: #fafafa;
 `;
 
 export const ProfileImage = styled.img`
@@ -75,16 +86,49 @@ export const ProfileImage = styled.img`
   height: 60px;
 `;
 
-export const UserBox = styled.div`
+export const PointBox = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
 `;
 
-export const Username = styled.strong`
-  font-size: 18px;
+export const PointAmount = styled.strong`
+  font-size: 19px;
 `;
 
-export const email = styled.p`
-  font-size: 14px;
+export const PointP = styled.p`
+  font-size: 16px;
   color: rgba(34, 34, 34, 0.5);
+`;
+
+export const PointButton = styled.button`
+  width: 134px;
+  height: 42px;
+  background-color: black;
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 0 18px 0 18px;
+
+  &:active {
+    opacity: 0.8;
+  }
+`;
+
+export const AmountBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 2rem;
+  margin-top: 6.5rem;
+`;
+
+export const AmountHeader = styled.h2`
+  font-size: 26px;
 `;

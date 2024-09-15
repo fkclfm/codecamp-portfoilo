@@ -32,4 +32,10 @@ export const globalStyles = css`
     text-decoration: none;
     color: black;
   }
+
+  button {
+    text-align: center;
+    border: 0;
+    background-color: transparent;
+  }
 `;
