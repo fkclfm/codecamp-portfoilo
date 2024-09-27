@@ -12,10 +12,10 @@ export default function MyPage() {
   const onClickPayment = async () => {
     if (process.browser) {
       const IMP = window.IMP;
-      IMP.init("imp66884241");
+      IMP.init("imp49910675");
       IMP.request_pay(
         {
-          pg: "tosspayments",
+          pg: "kakaopay",
           pay_method: "card",
           merchant_uid: `payment-${crypto.randomUUID()}`, // 주문 고유 번호
           name: "포인트 충전",
@@ -26,7 +26,7 @@ export default function MyPage() {
           buyer_addr: "서울특별시 강남구 신사동",
           buyer_postcode: "01181",
           notice_url: "http://localhost:3000/mypage/point/complete",
-          m_redirect_url: "http://localhost:3000/mypage/point/complete", // 모바일에서는 결제시, 페이지 주소가 바뀜. 따라서 결제 끝나고 돌아갈 주소 입력해야함.
+          m_redirect_url: "http://localhost:3000/mypage/", // 모바일에서는 결제시, 페이지 주소가 바뀜. 따라서 결제 끝나고 돌아갈 주소 입력해야함.
         },
         async (response: any) => {
           // 결제 종료 시 호출되는 콜백 함수
@@ -56,8 +56,10 @@ export default function MyPage() {
             }
           );
           if (notified.ok) {
-            CreatePointTransactionOfLoading(response.imp_uid);
-            alert("결제 성공");
+            const impUid = response.imp_uid;
+            await CreatePointTransactionOfLoading(impUid);
+            console.log(response.imp_uid);
+            alert("결제를 성공하셨습니다.");
           }
         }
       );
@@ -73,8 +75,8 @@ export default function MyPage() {
           </M.MyPageTextH2>
           <M.MyPagePointBox>
             <M.PointHeader>내 정보</M.PointHeader>
-            <M.PointCheckLink href="mypage/point">포인트</M.PointCheckLink>
-            <M.PointLink href="mypage/pointInfo">테스트</M.PointLink>
+            <M.PointCheckLink href="/mypage/point">포인트</M.PointCheckLink>
+            <M.PointLink href="/mypage/pointInfo">테스트</M.PointLink>
           </M.MyPagePointBox>
         </M.MyPageTextBox>
         <M.MyPageInfoBox>

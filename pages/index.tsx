@@ -1,8 +1,22 @@
 import Head from "next/head";
 import * as L from "../styles/index.styled";
-import { motion } from "framer-motion";
+import { motion, useTransform, useViewportScroll } from "framer-motion";
+import { useEffect, useState } from "react";
 
 export default function Home() {
+  const { scrollYProgress } = useViewportScroll();
+  const scale = useTransform(scrollYProgress, [0, 1], [-2, 1]);
+  const [showText, setShowText] = useState(false);
+
+  useEffect(() => {
+    const unsubscribe = scrollYProgress.onChange((value) => {
+      if (value === 1) {
+        setShowText(true);
+      }
+    });
+    return () => unsubscribe();
+  }, [scrollYProgress]);
+
   return (
     <>
       <Head>
@@ -108,6 +122,20 @@ export default function Home() {
           <L.ServiceImage src="/images/music.png" />
         </L.Service>
       </motion.div>
+      <L.LandingEnd style={{ scale }}>
+        <motion.div style={{ scaleY: scrollYProgress }} />
+        {showText && (
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <L.AnimatedTextStyle>
+              HIPLP을 통해 당신의 이야기를 들려주세요!
+            </L.AnimatedTextStyle>
+          </motion.div>
+        )}
+      </L.LandingEnd>
     </>
   );
 }

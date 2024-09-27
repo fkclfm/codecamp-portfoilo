@@ -37,9 +37,11 @@ export default function ItemLists() {
         useWindow={false}
         hasMore={true || false}
       >
-        {data?.fetchUseditems.map((el) => (
-          <Listitem key={uuidv4()} el={el} />
-        ))}
+        <I.ItemListWrapper>
+          {data?.fetchUseditems.map((el) => (
+            <Listitem key={uuidv4()} el={el} />
+          ))}
+        </I.ItemListWrapper>
       </InfiniteScroll>
       <I.CreateItemBtn onClick={onClickMoveToPage("/market/new")}>
         상품 등록하기

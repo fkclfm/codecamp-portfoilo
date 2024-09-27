@@ -25,7 +25,7 @@ export default function Header() {
   const backgroundColor = useTransform(
     scrollYProgress,
     [0.17, 0.25],
-    ["rgba(0, 0, 0, 1)", "rgba(255, 255, 255, 1)"]
+    ["rgba(0, 0, 0, 1)", "#ffffff"]
   );
   const textColor = useTransform(
     scrollYProgress,
@@ -61,6 +61,11 @@ export default function Header() {
     ? { backgroundColor }
     : { backgroundColor: "white" };
   const textColorStyle = isHomePage ? { color: textColor } : { color: "black" };
+
+  if (!isHomePage) {
+    backgroundColorStyle.backgroundColor = "white";
+    textColorStyle.color = "black";
+  }
 
   return (
     <Wrapper style={backgroundColorStyle} isFixed={isHomePage}>

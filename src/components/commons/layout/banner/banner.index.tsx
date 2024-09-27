@@ -87,7 +87,7 @@ export default function Banner() {
 
   const banner = [
     {
-      src: "/images/banner01.jpg",
+      src: "/images/banner01.png",
       number: 1,
       title: "칸예 웨스트의 내한",
       content: "한국을 뒤흔든 칸예 웨스트",
@@ -105,7 +105,7 @@ export default function Banner() {
       number: 3,
       title: "새벽마다 생각나는 목소리",
       content: "DEAN의 음악",
-      link: "https://www.youtube.com/watch?v=sKce5JbFBEc",
+      link: "https://youtu.be/NE14c5mEUdU?si=QkL5o_pH2hBpOynG",
     },
     {
       src: "/images/banner04.jpg",

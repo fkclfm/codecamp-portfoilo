@@ -1,4 +1,5 @@
 import styled from "@emotion/styled";
+import { motion } from "framer-motion";
 
 export const FirstLanding = styled.div`
   height: 100vh;
@@ -80,4 +81,23 @@ export const ServiceImage = styled.img`
     width: 400px;
     height: 400px;
   }
+`;
+
+export const LandingEnd = styled(motion.div)`
+  width: 100%;
+  height: 200vh;
+  background-image: url("/images/test.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const AnimatedTextStyle = styled.h2`
+  font-size: 4rem;
+  color: #ffffff;
+  text-align: center;
+  margin-top: 50rem;
 `;

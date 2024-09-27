@@ -27,6 +27,25 @@ export const useCreatePointTransactionOfLoading = () => {
         variables: {
           impUid,
         },
+        // 끝나고 바로 포인트 추가된 걸 받을 수 있게 제작(amount 더해서 추가된걸 반영)
+        update(cache, { data }) {
+          cache.modify({
+            fields: {
+              fetchUserLoggedIn: (prev) => {
+                if (prev && data?.createPointTransactionOfLoading.amount) {
+                  return {
+                    ...prev,
+                    userPoint: {
+                      amount:
+                        prev.userPoint?.amount +
+                        data?.createPointTransactionOfLoading.amount,
+                    },
+                  };
+                }
+              },
+            },
+          });
+        },
       });
       console.log(result);
     } catch (error) {
