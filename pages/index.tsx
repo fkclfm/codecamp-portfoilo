@@ -100,8 +100,8 @@ export default function Home() {
         <L.Service>
           <L.ServiceImage src="/images/megaphone.png" />
           <L.ServiceTextBox>
-            <L.ServiceH1>다양한 아티스트들의</L.ServiceH1>
-            <L.ServiceH1>소식을 알려줘요.</L.ServiceH1>
+            <L.ServiceH1>음반 중고 거래를</L.ServiceH1>
+            <L.ServiceH1>쉽게 할 수 있어요.</L.ServiceH1>
           </L.ServiceTextBox>
         </L.Service>
       </motion.div>

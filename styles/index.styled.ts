@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { motion } from "framer-motion";
 
 export const FirstLanding = styled.div`
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -47,7 +47,7 @@ export const Title = styled.h1`
 `;
 
 export const Service = styled.div`
-  height: 100vh;
+  height: 100dvh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -85,7 +85,7 @@ export const ServiceImage = styled.img`
 
 export const LandingEnd = styled(motion.div)`
   width: 100%;
-  height: 200vh;
+  height: 200dvh;
   background-image: url("/images/test.jpg");
   background-size: cover;
   background-position: center;

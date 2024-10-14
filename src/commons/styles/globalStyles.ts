@@ -16,7 +16,7 @@ export const globalStyles = css`
 
   @font-face {
     font-family: "Pretendard";
-    src: url("/fonts/Pretendard-Medium.woff");
+    src: url("/fonts/PretendardVariable.woff2");
   }
 
   input {
