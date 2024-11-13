@@ -1,45 +1,43 @@
 import styled from "@emotion/styled";
 
-export const Entire = styled.div``;
-
 export const Wrapper = styled.div`
   width: 1200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border: 1px solid gray;
   margin: 60px auto;
-  padding: 50px 80px;
+  padding: 50px 40px;
   gap: 15px;
   text-align: center;
 `;
-export const Header = styled.div`
+
+export const ImageBox = styled.div`
   display: flex;
   flex-direction: row;
-  width: 100%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  margin-top: 45px;
+  gap: 15px;
+  margin-bottom: 30px;
 `;
 
-export const Writer = styled.text`
-  font-size: 24px;
+export const TitleText = styled.span`
+  font-size: 39px;
   font-weight: 500;
   text-align: left;
 `;
 
-export const ProfileBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+export const Date = styled.span`
+  font-size: 18px;
+  font-weight: 500;
+  color: #828282;
 `;
 
-export const Date = styled.text`
-  font-size: 16px;
-  font-weight: 400;
-  color: #828282;
+export const ProfileBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 `;
 
 export const HorizonLine = styled.div`
@@ -49,34 +47,55 @@ export const HorizonLine = styled.div`
   margin-bottom: 60px;
 `;
 
-export const TitleText = styled.h1`
-  font-size: 36px;
-  text-align: left;
-  padding-bottom: 400px;
+export const TextBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+`;
+
+export const UserBox = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+`;
+
+export const Writer = styled.h1`
+  font-size: 18px;
+`;
+
+export const Text = styled.span`
+  font-size: 18px;
 `;
 
 export const BtnBox = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
+`;
+
+export const IconBtn = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 3px;
 `;
 
 export const BoardBtn = styled.button`
   border: 1px solid black;
-  width: 179px;
+  width: 33%;
   font-size: 16px;
-  font-weight: 500;
-  font-family: "NotoSansKR";
-  background-color: yellow;
+  font-weight: 700;
+  background-color: white;
   height: 45px;
-  opacity: 0.5;
-
-  &:hover {
-    opacity: 1;
-  }
+  cursor: pointer;
 `;
 
 export const RatingBox = styled.div`
@@ -85,6 +104,7 @@ export const RatingBox = styled.div`
   justify-content: center;
   align-items: center;
   gap: 5rem;
+  margin-bottom: 30px;
 `;
 
 export const LikeBox = styled.div`
@@ -116,18 +136,4 @@ export const AreaBox = styled.div`
 export const location = styled.img`
   width: 32px;
   height: 32px;
-`;
-
-export const ImageBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  margin-bottom: 30px;
-`;
-
-export const Image = styled.img`
-  width: 450px;
-  height: 450px;
 `;
