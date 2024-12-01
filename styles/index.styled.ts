@@ -1,103 +1,75 @@
 import styled from "@emotion/styled";
-import { motion } from "framer-motion";
 
 export const FirstLanding = styled.div`
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-`;
-
-export const LandingHeader = styled.h1`
-  font-size: 65px;
-  color: white;
-
-  @media screen and (min-width: 1300px) {
-    font-size: 55px;
-  }
-`;
-
-export const IntroduceBox = styled.div`
   height: 100vh;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 100px;
+  position: relative;
 `;
 
-export const TitleBox = styled.div`
+export const LandingHeader1 = styled.h1`
+  font-family: "Pretendard-Light";
+  font-size: 70px;
+  color: white;
+  margin-top: 25rem;
+`;
+
+export const LandingHeader2 = styled.h1`
+  font-family: "Pretendard-Black";
+  font-size: 88px;
+  color: white;
+  margin-bottom: 30px;
+`;
+
+export const LandingHeader3 = styled.p`
+  font-size: 20px;
+  color: white;
+  font-weight: 500;
+  margin-bottom: 3rem;
+`;
+
+export const LandingButton = styled.button`
+  font-family: "Pretendard-Bold";
+  font-size: 25px;
+  padding: 22px 50px;
+  color: white;
+  background-color: rgba(170, 170, 170, 0.3);
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10rem;
+`;
+
+export const Box = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+`;
+
+export const IntroBox = styled.div`
+  width: 546px;
+  height: 360px;
+  border-radius: 20px;
+  background-color: rgba(0, 0, 0, 0.3);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin-top: 40px;
-`;
-
-export const TitleImage = styled.img`
-  width: 300px;
-  height: 300px;
-`;
-export const Title = styled.h1`
-  font-size: 70px;
-  color: black;
-  @media screen and (min-width: 1300px) {
-    font-size: 60px;
-  }
-`;
-
-export const Service = styled.div`
-  height: 100dvh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 30em;
-
-  @media screen and (min-width: 1300px) {
-    gap: 20em;
-  }
-`;
-
-export const ServiceTextBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: center;
-`;
-export const ServiceH1 = styled.h1`
-  font-size: 70px;
-
-  @media screen and (min-width: 1300px) {
-    font-size: 50px;
-  }
-`;
-
-export const ServiceImage = styled.img`
-  width: 500px;
-  height: 500px;
-
-  @media screen and (min-width: 1300px) {
-    width: 400px;
-    height: 400px;
-  }
-`;
-
-export const LandingEnd = styled(motion.div)`
-  width: 100%;
-  height: 200dvh;
-  background-image: url("/images/test.jpg");
-  background-size: cover;
-  background-position: center;
-  overflow: hidden;
-  display: flex;
-  justify-content: center;
   align-items: center;
 `;
 
-export const AnimatedTextStyle = styled.h2`
-  font-size: 4rem;
-  color: #ffffff;
+export const IntroBoxHeader = styled.h1`
+  font-family: "Pretendard-Bold";
+  font-size: 32px;
   text-align: center;
-  margin-top: 50rem;
+  color: white;
+  margin-bottom: 25px;
+`;
+
+export const IntroContent = styled.p`
+  font-size: 17px;
+  color: white;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 25px;
+  text-align: center;
 `;

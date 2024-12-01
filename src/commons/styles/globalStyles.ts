@@ -19,6 +19,21 @@ export const globalStyles = css`
     src: url("/fonts/PretendardVariable.woff2");
   }
 
+  @font-face {
+    font-family: "Pretendard-Black";
+    src: url("/fonts/Pretendard-Black.woff2");
+  }
+
+  @font-face {
+    font-family: "Pretendard-Bold";
+    src: url("/fonts/Pretendard-Bold.woff2");
+  }
+
+  @font-face {
+    font-family: "Pretendard-Light";
+    src: url("/fonts/Pretendard-Light.woff2");
+  }
+
   input {
     outline: none;
   }
